@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/resource/theme.dart';
 
+import 'core/theme_provider.dart';
 import 'features/post_screen.dart';
 import 'features/provider/post_provider.dart';
 

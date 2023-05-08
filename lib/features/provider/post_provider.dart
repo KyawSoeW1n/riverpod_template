@@ -1,16 +1,25 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_testing/domain/get_photo/get_photo_usecase_impl.dart';
+import 'package:riverpod_testing/domain/get_posts/get_posts_usecase_impl.dart';
 import 'package:riverpod_testing/features/notifier/post_notifier.dart';
 
-import '../service/post_service.dart';
+import '../../data_source/network/posts/post_remote_datasource_impl.dart';
 
-final postServiceProvider = Provider<PostService>((ref) => PostService());
+final postRemoteDataSourceImpl =
+    Provider<PostRemoteDataSourceImpl>((ref) => PostRemoteDataSourceImpl());
 
-final postNotifierProvider = StateNotifierProvider<PostNotifier, AsyncValue<List<String>>>((ref){
-  PostService postService = ref.read(postServiceProvider);
-  return PostNotifier(postService);
+final getPostUseCaseImpl = Provider<GetPostsUseCaseImpl>(
+    (ref) => GetPostsUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
+
+final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
+    (ref) => GetPhotoUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
+
+final postNotifierProvider =
+    StateNotifierProvider<PostNotifier, AsyncValue<List<String>>>((ref) {
+  return PostNotifier(ref.read(getPostUseCaseImpl));
 });
 
-final themeModeProvider = StateProvider<ThemeMode>((ref) {
-  return ThemeMode.light;
+final photoNotifierProvider =
+    StateNotifierProvider<PhotoNotifier, AsyncValue<List<String>>>((ref) {
+  return PhotoNotifier(ref.read(getPhotoUseCaseImpl));
 });

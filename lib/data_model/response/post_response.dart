@@ -3,8 +3,8 @@
 /// title : "delectus aut autem"
 /// completed : false
 
-class TestResponse {
-  TestResponse({
+class PostItemResponse {
+  PostItemResponse({
     int? userId,
     int? id,
     String? title,
@@ -16,7 +16,7 @@ class TestResponse {
     _completed = completed;
   }
 
-  TestResponse.fromJson(dynamic json) {
+  PostItemResponse.fromJson(dynamic json) {
     _userId = json['userId'];
     _id = json['id'];
     _title = json['title'];
@@ -28,13 +28,13 @@ class TestResponse {
   String? _title;
   bool? _completed;
 
-  TestResponse copyWith({
+  PostItemResponse copyWith({
     int? userId,
     int? id,
     String? title,
     bool? completed,
   }) =>
-      TestResponse(
+      PostItemResponse(
         userId: userId ?? _userId,
         id: id ?? _id,
         title: title ?? _title,
