@@ -28,10 +28,8 @@ Exception handleDioError(DioError dioError) {
       return _parseDioErrorResponse(dioError);
     case DioErrorType.badCertificate:
       return AppException(message: "Bad Certificate");
-      break;
     case DioErrorType.connectionError:
       return TimeoutException("Receive timeout in connection with API server");
-      break;
   }
 }
 
@@ -50,7 +48,7 @@ Exception _parseDioErrorResponse(DioError dioError) {
       // );
     }
     serverMessage = dioError.response?.data["message"];
-  } catch (e, s) {
+  } catch (e) {
     serverMessage = "Something went wrong. Please try again later.";
   }
 

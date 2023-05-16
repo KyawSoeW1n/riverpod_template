@@ -48,14 +48,15 @@ class PostScreen extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     return CachedNetworkImage(
                       imageUrl: config[index],
-                      placeholder: (context, url) => Center(
+                      placeholder: (context, url) => const Center(
                         child: SizedBox(
                           width: 40.0,
                           height: 40.0,
                           child: CircularProgressIndicator(),
                         ),
                       ),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     );
                   },
                 );

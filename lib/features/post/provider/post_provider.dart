@@ -3,10 +3,13 @@ import 'package:riverpod_testing/domain/get_photo/get_photo_usecase_impl.dart';
 import 'package:riverpod_testing/domain/get_posts/get_posts_usecase_impl.dart';
 
 import '../../../data_source/network/posts/post_remote_datasource_impl.dart';
+import '../../../mapper/photo_mapper.dart';
 import '../notifier/post_notifier.dart';
 
-final postRemoteDataSourceImpl =
-    Provider<PostRemoteDataSourceImpl>((ref) => PostRemoteDataSourceImpl());
+final photoMapper = Provider<PhotoMapper>((ref) => PhotoMapper());
+
+final postRemoteDataSourceImpl = Provider<PostRemoteDataSourceImpl>(
+    (ref) => PostRemoteDataSourceImpl(ref.read(photoMapper)));
 
 final getPostUseCaseImpl = Provider<GetPostsUseCaseImpl>(
     (ref) => GetPostsUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
