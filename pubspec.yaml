@@ -45,6 +45,9 @@ dependencies:
 
   #Image Library
   cached_network_image: ^3.2.3
+
+  #Theme Animator
+  animated_theme_switcher: ^2.0.8
 dev_dependencies:
   flutter_test:
     sdk: flutter
