@@ -39,12 +39,19 @@ dependencies:
   flutter_riverpod: ^2.3.2
   hooks_riverpod: ^2.3.2
 
+  #Navigation
+  go_router: ^7.0.1
+
   #Dio
   dio: ^5.1.1
   pretty_dio_logger: ^1.1.1
 
   #Image Library
   cached_network_image: ^3.2.3
+
+  #Database
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

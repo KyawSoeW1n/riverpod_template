@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_testing/features/provider/post_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:riverpod_testing/features/post/provider/post_provider.dart';
+import 'package:riverpod_testing/widget/common/common_app_bar.dart';
 
-import '../core/theme_provider.dart';
+import '../../app_constants/app_routes.dart';
 
 class PostScreen extends ConsumerWidget {
   const PostScreen({super.key});
@@ -13,24 +15,12 @@ class PostScreen extends ConsumerWidget {
     final postProvider = ref.watch(postNotifierProvider);
     final photoProvider = ref.watch(photoNotifierProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Posts"),
-        actions: [
-          Consumer(
-            builder: (context, ref, child) {
-              final theme = ref.watch(themeModeProvider);
-              return IconButton(
-                onPressed: () {
-                  ref.read(themeModeProvider.notifier).state =
-                      theme == ThemeMode.light
-                          ? ThemeMode.dark
-                          : ThemeMode.light;
-                },
-                icon: Icon(theme == ThemeMode.dark
-                    ? Icons.light_mode
-                    : Icons.dark_mode),
-              );
-            },
+      appBar: CommonAppBar(
+        "Posts",
+        actionList: [
+          IconButton(
+            onPressed: () => context.go("/${AppRoutes.setting}"),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),
@@ -56,14 +46,17 @@ class PostScreen extends ConsumerWidget {
                 return ListView.builder(
                   itemCount: config.length,
                   itemBuilder: (context, index) {
-                    debugPrint(">>>>>>> ${config[index]}");
-                    return Text(config[index]);
-                    // return Image.network(config[index]);
-                    // return CachedNetworkImage(
-                    //   imageUrl: config[index],
-                    //   placeholder: (context, url) => CircularProgressIndicator(),
-                    //   errorWidget: (context, url, error) => Icon(Icons.error),
-                    // );
+                    return CachedNetworkImage(
+                      imageUrl: config[index],
+                      placeholder: (context, url) => Center(
+                        child: SizedBox(
+                          width: 40.0,
+                          height: 40.0,
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    );
                   },
                 );
               },

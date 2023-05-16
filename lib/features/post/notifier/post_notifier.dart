@@ -1,7 +1,7 @@
 import 'package:riverpod/riverpod.dart';
 
-import '../../domain/get_photo/get_photo_usecase_impl.dart';
-import '../../domain/get_posts/get_posts_usecase_impl.dart';
+import '../../../domain/get_photo/get_photo_usecase_impl.dart';
+import '../../../domain/get_posts/get_posts_usecase_impl.dart';
 
 class PostNotifier extends StateNotifier<AsyncValue<List<String>>> {
   final GetPostsUseCaseImpl _getPostsUseCaseImpl;
