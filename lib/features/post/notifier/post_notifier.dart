@@ -1,11 +1,11 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
-import 'package:riverpod_testing/domain/get_favourite_post/get_favourite_post_usecase_impl.dart';
 
+import '../../../data_model/vo/post_vo.dart';
 import '../../../domain/get_photo/get_photo_usecase_impl.dart';
 import '../../../domain/get_posts/get_posts_usecase_impl.dart';
 
-class PostNotifier extends StateNotifier<AsyncValue<List<String>>> {
+class PostNotifier extends StateNotifier<AsyncValue<List<PostVO>>> {
   final GetPostsUseCaseImpl _getPostsUseCaseImpl;
   final AddFavouritePostUseCaseImpl _addFavouritePostUseCaseImpl;
 

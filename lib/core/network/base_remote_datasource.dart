@@ -21,13 +21,13 @@ abstract class BaseRemoteSource {
     } on DioError catch (dioError) {
       Exception exception = handleDioError(dioError);
       if (kDebugMode) {
-        print(
+        debugPrint(
             "Throwing error from repository: >>>>>>> $exception : ${(exception as BaseException).message}");
       }
       throw exception;
     } catch (error) {
       if (kDebugMode) {
-        print("Generic error: >>>>>>> $error");
+        debugPrint("Generic error: >>>>>>> $error");
       }
 
       if (error is BaseException) {

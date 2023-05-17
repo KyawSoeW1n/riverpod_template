@@ -11,7 +11,7 @@ final GoRouter goRouter = GoRouter(
     GoRoute(
       path: AppRoutes.post,
       builder: (BuildContext context, GoRouterState state) {
-        return const PostScreen();
+        return PostScreen();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -23,7 +23,7 @@ final GoRouter goRouter = GoRouter(
         GoRoute(
           path: AppRoutes.favourite,
           builder: (BuildContext context, GoRouterState state) {
-            return const FavouritePostsScreen();
+            return FavouritePostsScreen();
           },
         ),
       ],

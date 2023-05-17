@@ -10,6 +10,11 @@ class GetPhotoUseCaseImpl extends GetPhotoUseCase {
 
   @override
   Future<AsyncValue<List<String>>> getPhotoList() async {
-    return await _postRemoteDataSourceImpl.getPhotoList();
+    try{
+      return await _postRemoteDataSourceImpl.getPhotoList();
+    }catch(e){
+      return AsyncError(e, StackTrace.current);
+    }
+
   }
 }

@@ -23,8 +23,11 @@ class SettingScreen extends ConsumerWidget {
                 ref.watch(themeController.notifier).toggle(value),
           ),
           InkWell(
-            onTap: () => context.go("/${AppRoutes.favourite}"),
-            child: Text("Favourites"),
+            onTap: () => context.push("/${AppRoutes.favourite}"),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text("Favourites"),
+            ),
           )
         ],
       ),

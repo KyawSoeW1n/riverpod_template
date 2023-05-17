@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/data_source/local/app_database.dart';
 import 'package:riverpod_testing/data_source/local/favourite_post/favourite_post_local_datasource_impl.dart';
@@ -6,6 +5,7 @@ import 'package:riverpod_testing/domain/get_photo/get_photo_usecase_impl.dart';
 import 'package:riverpod_testing/domain/get_posts/get_posts_usecase_impl.dart';
 import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
+import '../../../data_model/vo/post_vo.dart';
 import '../../../data_source/network/posts/post_remote_datasource_impl.dart';
 import '../../../domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
 import '../../../domain/get_favourite_post/get_favourite_post_usecase_impl.dart';
@@ -19,8 +19,8 @@ final postLocalDataSourceImpl = Provider<FavouritePostLocalDataSourceImpl>(
     (ref) => FavouritePostLocalDataSourceImpl(
         ref.read(postMapper), ref.read(databaseService)));
 
-final postRemoteDataSourceImpl = Provider<PostRemoteDataSourceImpl>(
-    (ref) => PostRemoteDataSourceImpl(ref.read(photoMapper)));
+final postRemoteDataSourceImpl = Provider<PostRemoteDataSourceImpl>((ref) =>
+    PostRemoteDataSourceImpl(ref.read(photoMapper), ref.read(postMapper)));
 
 final getPostUseCaseImpl = Provider<GetPostsUseCaseImpl>(
     (ref) => GetPostsUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
@@ -35,7 +35,7 @@ final getFavouritePostUseCaseImpl = Provider<GetFavouritePostUseCaseImpl>(
     (ref) => GetFavouritePostUseCaseImpl(ref.read(postLocalDataSourceImpl)));
 
 final postNotifierProvider =
-    StateNotifierProvider<PostNotifier, AsyncValue<List<String>>>((ref) {
+    StateNotifierProvider<PostNotifier, AsyncValue<List<PostVO>>>((ref) {
   return PostNotifier(
     ref.read(getPostUseCaseImpl),
     ref.read(addFavouritePostUseCaseImpl),
