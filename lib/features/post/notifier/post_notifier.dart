@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:riverpod_testing/core/network/exception/not_found_exception.dart';
 import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
 
 import '../../../data_model/vo/post_vo.dart';
@@ -55,6 +56,14 @@ class PhotoTestingNotifier extends StateNotifier<AsyncValue<List<String>>> {
   void getPhotoList(BuildContext context) async {
     state = const AsyncLoading();
     state = await _getPhotoTestUseCaseImpl.getPhotoList();
+
+    if(state.hasError){
+      if(state.error is NotFoundException){
+        print("This is ${(state.error as NotFoundException).message}");
+      }else{
+        print("This is other error");
+      }
+    }
     if (state is AsyncError) {
       showDialog(
         context: context,

@@ -48,7 +48,7 @@ class PostRemoteDataSourceImpl extends BaseRemoteSource
   }
 
   @override
-  Future<AsyncValue<List<String>>> getPhotoTestingList() {
+  Future<AsyncValue<List<String>>> getPhotoTestingList() async{
     try {
       const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhotoTest}";
       final dioCall = dioClient.get(endpoint);
@@ -56,7 +56,7 @@ class PostRemoteDataSourceImpl extends BaseRemoteSource
         return AsyncData(_photoMapper.mapFromResponse(response.data));
       });
     } catch (e) {
-      rethrow;
+      return AsyncError(e, StackTrace.current);
     }
   }
 }

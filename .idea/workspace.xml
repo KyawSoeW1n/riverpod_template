@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7a2923-a97e-43a7-ad5a-8446f691d283" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/common/common_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/common/common_app_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data_source/network/posts/post_remote_datasource_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data_source/network/posts/post_remote_datasource_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/post/notifier/post_notifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/post/notifier/post_notifier.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +47,7 @@
   "keyToString": {
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false"
@@ -62,6 +62,14 @@
       <option name="presentableId" value="Default" />
       <updated>1681806311167</updated>
     </task>
+    <task id="LOCAL-00001" summary="- Error fix for common_app_bar.dart">
+      <created>1684319789227</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684319789227</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -69,5 +77,9 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Error fix for common_app_bar.dart" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Error fix for common_app_bar.dart" />
   </component>
 </project>
