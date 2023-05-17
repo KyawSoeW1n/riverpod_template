@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../app_constants/app_routes.dart';
 import '../../core/theme_provider.dart';
 import '../../widget/common/common_app_bar.dart';
 
@@ -19,6 +21,10 @@ class SettingScreen extends ConsumerWidget {
             value: (mode == 'dark') ? true : false,
             onChanged: (value) =>
                 ref.watch(themeController.notifier).toggle(value),
+          ),
+          InkWell(
+            onTap: () => context.go("/${AppRoutes.favourite}"),
+            child: Text("Favourites"),
           )
         ],
       ),

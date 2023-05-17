@@ -1,6 +1,5 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_testing/app_constants/api_routes.dart';
-import 'package:riverpod_testing/data_model/response/photo_response.dart';
 import 'package:riverpod_testing/data_source/network/posts/post_remote_datasource.dart';
 import 'package:riverpod_testing/mapper/photo_mapper.dart';
 
@@ -20,8 +19,7 @@ class PostRemoteDataSourceImpl extends BaseRemoteSource
       const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
       final dioCall = dioClient.get(endpoint);
       return callApiWithErrorParser(dioCall).then((response) {
-        final posts = response.data as List<PhotoResponse>;
-        return AsyncData(photoMapper.getUrlList(posts));
+        return AsyncData(photoMapper.mapFromResponse(response.data));
       });
     } catch (e) {
       return AsyncError(e, StackTrace.current);

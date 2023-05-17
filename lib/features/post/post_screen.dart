@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
+import 'package:riverpod_testing/widget/posts/post_item.dart';
 
 import '../../app_constants/app_routes.dart';
 
@@ -14,6 +15,7 @@ class PostScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final postProvider = ref.watch(postNotifierProvider);
     final photoProvider = ref.watch(photoNotifierProvider);
+    final getFavouritePostsProvider = ref.watch(favouritePostsStreamProvider);
     return Scaffold(
       appBar: CommonAppBar(
         "Posts",
@@ -26,6 +28,17 @@ class PostScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
+          getFavouritePostsProvider.when(
+            loading: () => const Center(
+              child: CircularProgressIndicator(
+                color: Colors.amber,
+              ),
+            ),
+            error: (err, stack) => Container(),
+            data: (config) {
+              return Text("FAVOURITE POST Count${config.length}");
+            },
+          ),
           Expanded(
             flex: 1,
             child: photoProvider.when(
@@ -83,8 +96,10 @@ class PostScreen extends ConsumerWidget {
                 return ListView.builder(
                   itemCount: config.length,
                   itemBuilder: (context, index) {
-                    return Text(
+                    return PostItem(
+                      index,
                       config[index],
+                      ref.read(postNotifierProvider.notifier).addFavouritePost,
                     );
                   },
                 );
