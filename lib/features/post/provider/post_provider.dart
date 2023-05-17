@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/data_source/local/app_database.dart';
 import 'package:riverpod_testing/data_source/local/favourite_post/favourite_post_local_datasource_impl.dart';
 import 'package:riverpod_testing/domain/get_photo/get_photo_usecase_impl.dart';
+import 'package:riverpod_testing/domain/get_photo_testing/get_photo_testing_usecase_impl.dart';
 import 'package:riverpod_testing/domain/get_posts/get_posts_usecase_impl.dart';
 import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
@@ -28,6 +29,9 @@ final getPostUseCaseImpl = Provider<GetPostsUseCaseImpl>(
 final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
     (ref) => GetPhotoUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
 
+final getPhotoTestUseCaseImpl = Provider<GetPhotoTestUseCaseImpl>(
+        (ref) => GetPhotoTestUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
+
 final addFavouritePostUseCaseImpl = Provider<AddFavouritePostUseCaseImpl>(
     (ref) => AddFavouritePostUseCaseImpl(ref.read(postLocalDataSourceImpl)));
 
@@ -39,6 +43,7 @@ final postNotifierProvider =
   return PostNotifier(
     ref.read(getPostUseCaseImpl),
     ref.read(addFavouritePostUseCaseImpl),
+    ref.read(getPhotoTestUseCaseImpl),
   );
 });
 
@@ -47,13 +52,17 @@ final photoNotifierProvider =
   return PhotoNotifier(ref.read(getPhotoUseCaseImpl));
 });
 
+final photoTestNotifierProvider =
+    StateNotifierProvider<PhotoTestingNotifier, AsyncValue<List<String>>>((ref) {
+  return PhotoTestingNotifier(ref.read(getPhotoTestUseCaseImpl));
+});
+
 final favouritePostsStreamProvider = StreamProvider.autoDispose((ref) async* {
   final stream = ref.watch(databaseService).getFavouriteStream();
-  var count = 0;
+  // var count = 0;
   stream.listen((event) {
-    count = event.length;
+    // count = event.length;
   });
-  await for (final value in stream) {
-    yield value;
-  }
+
+  yield* stream;
 });

@@ -46,4 +46,17 @@ class PostRemoteDataSourceImpl extends BaseRemoteSource
       return AsyncError(e, StackTrace.current);
     }
   }
+
+  @override
+  Future<AsyncValue<List<String>>> getPhotoTestingList() {
+    try {
+      const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhotoTest}";
+      final dioCall = dioClient.get(endpoint);
+      return callApiWithErrorParser(dioCall).then((response) {
+        return AsyncData(_photoMapper.mapFromResponse(response.data));
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

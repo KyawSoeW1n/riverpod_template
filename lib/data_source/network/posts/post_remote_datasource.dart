@@ -6,4 +6,6 @@ abstract class PostsRemoteDataSource {
   Future<AsyncValue<List<PostVO>>> getPostList();
 
   Future<AsyncValue<List<String>>> getPhotoList();
+
+  Future<AsyncValue<List<String>>> getPhotoTestingList();
 }
