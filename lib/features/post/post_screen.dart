@@ -21,6 +21,19 @@ class PostScreen extends BaseView {
           onPressed: () => context.go("/${AppRoutes.setting}"),
           icon: const Icon(Icons.settings),
         ),
+        Consumer(
+          // 2. specify the builder and obtain a WidgetRef
+          builder: (_, WidgetRef ref, __) {
+            // 3. use ref.watch() to get the value of the provider
+            // final photoProvider = ref.watch(postNotifierProvider);
+            return IconButton(
+              onPressed: () => ref
+                  .read(photoTestNotifierProvider.notifier)
+                  .getPhotoList(context),
+              icon: const Icon(Icons.refresh),
+            );
+          },
+        )
       ],
     );
   }

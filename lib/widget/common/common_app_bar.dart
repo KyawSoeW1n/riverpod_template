@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CommonAppBar extends StatelessWidget with PreferredSizeWidget {
+class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actionList;
 
