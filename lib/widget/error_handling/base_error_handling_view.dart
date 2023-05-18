@@ -17,50 +17,53 @@ class BaseErrorHandlingView extends StatelessWidget {
     required this.errorException,
   });
 
-  Widget noInterNetView(String message) => Text("Common $message");
+  ///Default No Internet view
+  ///Can change that view using override in child widget
+  Widget noInternetView(String message) => Text("Common $message");
 
+  ///Default No Resource Found
+  ///Can change that view using override in child widget
   Widget notFoundView(String message) => Text("Common $message");
 
+  ///Default Common Error View
+  ///Can change that view using override in child widget
   Widget commonErrorView(String message) => Text("Common $message");
 
   @override
   Widget build(BuildContext context) {
     if (errorException is NetworkException) {
-      return noInterNetView((errorException as BaseException).message ?? '');
+      return noInternetView((errorException as BaseException).message);
     }
 
     if (errorException is NotFoundException) {
-      return notFoundView((errorException as NotFoundException).message ?? '');
+      return notFoundView((errorException as NotFoundException).message);
     }
 
     if (errorException is ServiceUnavailableException) {
       return commonErrorView(
-          (errorException as ServiceUnavailableException).message ?? '');
+          (errorException as ServiceUnavailableException).message);
     }
 
     if (errorException is UnauthorizedException) {
-      return commonErrorView(
-          (errorException as UnauthorizedException).message ?? '');
+      return commonErrorView((errorException as UnauthorizedException).message);
     }
 
     if (errorException is TimeoutException) {
-      return commonErrorView(
-          (errorException as TimeoutException).message ?? '');
+      return commonErrorView((errorException as TimeoutException).message);
     }
 
     if (errorException is JsonFormatException) {
-      return commonErrorView(
-          (errorException as JsonFormatException).message ?? '');
+      return commonErrorView((errorException as JsonFormatException).message);
     }
 
     if (errorException is ApiException) {
-      return commonErrorView((errorException as ApiException).message ?? '');
+      return commonErrorView((errorException as ApiException).message);
     }
 
     if (errorException is AppException) {
-      return commonErrorView((errorException as ApiException).message ?? '');
+      return commonErrorView((errorException as ApiException).message);
     }
 
-    return commonErrorView((errorException as BaseException).message ?? '');
+    return commonErrorView((errorException as BaseException).message);
   }
 }

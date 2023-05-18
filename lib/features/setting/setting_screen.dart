@@ -24,8 +24,8 @@ class SettingScreen extends ConsumerWidget {
           ),
           InkWell(
             onTap: () => context.push("/${AppRoutes.favourite}"),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text("Favourites"),
             ),
           )

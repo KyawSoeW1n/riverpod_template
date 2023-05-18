@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/core/network/exception/api_exception.dart';
 import 'package:riverpod_testing/core/network/exception/app_exception.dart';
@@ -23,7 +22,7 @@ extension AsyncErrorExtension<T> on AsyncValue<T> {
     Function(String? message)? onCommonException,
   }) {
     if (error is NetworkException) {
-      onNetworkException?.call((error as BaseException).message ?? '');
+      onNetworkException?.call((error as BaseException).message);
       return;
     }
 

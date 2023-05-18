@@ -14,7 +14,7 @@ abstract class BaseRemoteSource {
   Future<Response<T>> callApiWithErrorParser<T>(Future<Response<T>>  Function() apiProvider) async {
     bool isNetworkAvailable = await NetworkUtil.isNetworkAvailable();
       if (isNetworkAvailable == false) {
-        throw NetworkException(message: "No Internet Connection");
+        throw NetworkException( "No Internet Connection");
       }
 
     try {
