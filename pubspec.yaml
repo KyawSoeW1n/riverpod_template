@@ -38,6 +38,7 @@ dependencies:
   riverpod: ^2.3.2
   flutter_riverpod: ^2.3.2
   hooks_riverpod: ^2.3.2
+  connectivity_plus: ^2.3.9
 
   #Navigation
   go_router: ^7.0.1
@@ -56,6 +57,11 @@ dependencies:
   #DataModel
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1
+
+  #Toast
+  fluttertoast: ^8.2.1
+
+  rxdart: ^0.27.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -43,7 +43,6 @@ final postNotifierProvider =
   return PostNotifier(
     ref.read(getPostUseCaseImpl),
     ref.read(addFavouritePostUseCaseImpl),
-    ref.read(getPhotoTestUseCaseImpl),
   );
 });
 

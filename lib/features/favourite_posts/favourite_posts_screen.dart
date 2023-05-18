@@ -38,7 +38,7 @@ class FavouritePostsScreen extends BaseView {
                     child: Row(
                       children: [
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.blue,
                           ),

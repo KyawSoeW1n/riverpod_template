@@ -7,6 +7,6 @@ class ServiceUnavailableException extends BaseApiException {
       : super(
           httpCode: HttpStatus.serviceUnavailable,
           message: message,
-          status: "",
+          status: "Service Unavailable",
         );
 }
