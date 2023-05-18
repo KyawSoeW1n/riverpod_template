@@ -9,7 +9,7 @@ class GetPhotoTestUseCaseImpl extends GetPhotoTestUseCase {
   GetPhotoTestUseCaseImpl(this._postRemoteDataSourceImpl);
 
   @override
-  Future<AsyncValue<List<String>>> getPhotoList() async {
+  Future<AsyncValue<List<String>>> getPhotoTestingList() async {
     try {
       return await _postRemoteDataSourceImpl.getPhotoTestingList();
     } catch (e) {

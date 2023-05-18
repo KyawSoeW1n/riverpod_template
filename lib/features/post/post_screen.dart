@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
+import 'package:riverpod_testing/features/post/widgets/error_handling_widget.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
+import 'package:riverpod_testing/widget/error_handling/base_error_handling_view.dart';
 import 'package:riverpod_testing/widget/posts/post_item.dart';
 
 import '../../app_constants/app_routes.dart';
@@ -73,14 +75,7 @@ class PostScreen extends BaseView {
                 color: Colors.amber,
               ),
             ),
-            error: (err, stack) => Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  ref.read(photoNotifierProvider.notifier).getPhotoList();
-                },
-                child: const Text("Try Again"),
-              ),
-            ),
+            error: (err, stack) => ErrorHandlingWidget(exception: err),
             data: (config) {
               return ListView.builder(
                 itemCount: config.length,

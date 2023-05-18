@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:riverpod_testing/core/exception_handler/exception_handler.dart';
 import 'package:riverpod_testing/core/network/exception/not_found_exception.dart';
 import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
 
@@ -55,31 +56,29 @@ class PhotoTestingNotifier extends StateNotifier<AsyncValue<List<String>>> {
 
   void getPhotoList(BuildContext context) async {
     state = const AsyncLoading();
-    state = await _getPhotoTestUseCaseImpl.getPhotoList();
-
-    if(state.hasError){
-      if(state.error is NotFoundException){
-        print("This is ${(state.error as NotFoundException).message}");
-      }else{
-        print("This is other error");
-      }
-    }
-    if (state is AsyncError) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Network Error'),
-          content: Text('An error occurred during the network call.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
-    }
+    state = await _getPhotoTestUseCaseImpl.getPhotoTestingList();
+    state.handleSpecificException(
+        onNetworkException: (_)=> showErrorDialog(_, context),
+        // onNotFoundException: (_)=> debugPrint("Not Found For this API"),
+        onCommonException: (_)=> showErrorDialog(_, context),
+    );
   }
+}
+
+ showErrorDialog(String? msg, BuildContext context){
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text("$msg"),
+      content: Text("${msg}"),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('OK'),
+        ),
+      ],
+    ),
+  );
 }
