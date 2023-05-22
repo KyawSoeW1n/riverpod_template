@@ -30,7 +30,7 @@ class PostScreen extends BaseView {
             // final photoProvider = ref.watch(postNotifierProvider);
             return IconButton(
               onPressed: () => ref
-                  .read(photoTestNotifierProvider.notifier)
+                  .read(photoNotifierProvider.notifier)
                   .getPhotoList(context),
               icon: const Icon(Icons.refresh),
             );
@@ -45,6 +45,10 @@ class PostScreen extends BaseView {
     final postProvider = ref.watch(postNotifierProvider);
     final photoProvider = ref.watch(photoNotifierProvider);
     final getFavouritePostsProvider = ref.watch(favouritePostsStreamProvider);
+    final allPhotos = photoProvider.maybeWhen(
+      data: (photos) => photos,
+      orElse: () => [],
+    );
     return Column(
       children: [
         getFavouritePostsProvider.when(
@@ -78,10 +82,10 @@ class PostScreen extends BaseView {
             error: (err, stack) => ErrorHandlingWidget(exception: err),
             data: (config) {
               return ListView.builder(
-                itemCount: config.length,
+                itemCount: allPhotos.length,
                 itemBuilder: (context, index) {
                   return CachedNetworkImage(
-                    imageUrl: config[index],
+                    imageUrl: allPhotos[index],
                     placeholder: (context, url) => const Center(
                       child: SizedBox(
                         width: 40.0,

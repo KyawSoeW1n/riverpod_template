@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/data_source/local/app_database.dart';
 import 'package:riverpod_testing/data_source/local/favourite_post/favourite_post_local_datasource_impl.dart';
@@ -16,6 +17,7 @@ import '../notifier/post_notifier.dart';
 final photoMapper = Provider<PhotoMapper>((ref) => PhotoMapper());
 final postMapper = Provider<PostMapper>((ref) => PostMapper());
 
+
 final postLocalDataSourceImpl = Provider<FavouritePostLocalDataSourceImpl>(
     (ref) => FavouritePostLocalDataSourceImpl(
         ref.read(postMapper), ref.read(databaseService)));
@@ -30,7 +32,7 @@ final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
     (ref) => GetPhotoUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
 
 final getPhotoTestUseCaseImpl = Provider<GetPhotoTestUseCaseImpl>(
-        (ref) => GetPhotoTestUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
+    (ref) => GetPhotoTestUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
 
 final addFavouritePostUseCaseImpl = Provider<AddFavouritePostUseCaseImpl>(
     (ref) => AddFavouritePostUseCaseImpl(ref.read(postLocalDataSourceImpl)));
@@ -53,7 +55,8 @@ final photoNotifierProvider =
 });
 
 final photoTestNotifierProvider =
-    StateNotifierProvider<PhotoTestingNotifier, AsyncValue<List<String>>>((ref) {
+    StateNotifierProvider<PhotoTestingNotifier, AsyncValue<List<String>>>(
+        (ref) {
   return PhotoTestingNotifier(ref.read(getPhotoTestUseCaseImpl));
 });
 
