@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_testing/app_constants/app_route_configuration.dart';
 import 'package:riverpod_testing/data_source/local/app_database.dart';
 import 'package:riverpod_testing/data_source/local/favourite_post/favourite_post_local_datasource_impl.dart';
 import 'package:riverpod_testing/domain/get_photo/get_photo_usecase_impl.dart';
@@ -16,7 +17,6 @@ import '../notifier/post_notifier.dart';
 
 final photoMapper = Provider<PhotoMapper>((ref) => PhotoMapper());
 final postMapper = Provider<PostMapper>((ref) => PostMapper());
-
 
 final postLocalDataSourceImpl = Provider<FavouritePostLocalDataSourceImpl>(
     (ref) => FavouritePostLocalDataSourceImpl(
@@ -50,8 +50,11 @@ final postNotifierProvider =
 });
 
 final photoNotifierProvider =
-    StateNotifierProvider<PhotoNotifier, AsyncValue<List<String>>>((ref) {
-  return PhotoNotifier(ref.read(getPhotoUseCaseImpl));
+    StateNotifierProvider<PhotoNotifier, AsyncValue>((ref) {
+  return PhotoNotifier(
+    ref.read(getPhotoUseCaseImpl),
+    goRouter.routerDelegate.navigatorKey.currentState!.context,
+  );
 });
 
 final photoTestNotifierProvider =

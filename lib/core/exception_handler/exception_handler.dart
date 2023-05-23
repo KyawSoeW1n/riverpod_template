@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/core/network/exception/api_exception.dart';
 import 'package:riverpod_testing/core/network/exception/app_exception.dart';
@@ -10,7 +9,7 @@ import 'package:riverpod_testing/core/network/exception/service_unavailable_exce
 import 'package:riverpod_testing/core/network/exception/timeout_exception.dart';
 import 'package:riverpod_testing/core/network/exception/unauthorize_exception.dart';
 
-extension AsyncErrorExtension<T> on AsyncValue<T> {
+extension ExceptionExtension<T> on Object{ // Object may be BaseException or AsyncValue<> state
   void handleSpecificException({
     Function(String? message)? onNetworkException,
     Function(String? message)? onNotFoundException,
@@ -22,50 +21,54 @@ extension AsyncErrorExtension<T> on AsyncValue<T> {
     Function(String? message)? onAppException,
     Function(String? message)? onCommonException,
   }) {
-    if (error is NetworkException) {
-      onNetworkException?.call((error as BaseException).message ?? '');
+    Object? errorException =  this;
+    if(this is AsyncError){
+      errorException = (this as AsyncError).error;
+    }
+    if (errorException is NetworkException) {
+      onNetworkException?.call((errorException).message ?? '');
       return;
     }
 
-    if (error is NotFoundException && onNotFoundException != null) {
-      onNotFoundException((error as NotFoundException).message);
+    if (errorException is NotFoundException && onNotFoundException != null) {
+      onNotFoundException((errorException).message);
       return;
     }
 
-    if (error is ServiceUnavailableException &&
+    if (errorException is ServiceUnavailableException &&
         onServiceUnavailableException != null) {
       onServiceUnavailableException(
-          (error as ServiceUnavailableException).message);
+          (errorException).message);
       return;
     }
 
-    if (error is UnauthorizedException && onUnauthorizedException != null) {
-      onUnauthorizedException((error as UnauthorizedException).message);
+    if (errorException is UnauthorizedException && onUnauthorizedException != null) {
+      onUnauthorizedException((errorException).message);
       return;
     }
 
-    if (error is TimeoutException && onTimeoutException != null) {
-      onTimeoutException((error as TimeoutException).message);
+    if (errorException is TimeoutException && onTimeoutException != null) {
+      onTimeoutException((errorException).message);
       return;
     }
 
-    if (error is JsonFormatException && onJsonFormatException != null) {
-      onJsonFormatException((error as JsonFormatException).message);
+    if (errorException is JsonFormatException && onJsonFormatException != null) {
+      onJsonFormatException((errorException).message);
       return;
     }
 
-    if (error is ApiException && onApiException != null) {
-      onApiException((error as ApiException).message);
+    if (errorException is ApiException && onApiException != null) {
+      onApiException((errorException).message);
       return;
     }
 
-    if (error is AppException && onAppException != null) {
-      onAppException((error as AppException).message);
+    if (errorException is AppException && onAppException != null) {
+      onAppException((errorException).message);
       return;
     }
 
-    if (onCommonException != null) {
-      onCommonException.call((error as BaseException).message);
+    if (errorException is BaseException && onCommonException != null) {
+      onCommonException.call((errorException).message);
       return;
     }
   }

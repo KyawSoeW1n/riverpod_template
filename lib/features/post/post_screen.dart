@@ -31,7 +31,7 @@ class PostScreen extends BaseView {
             return IconButton(
               onPressed: () => ref
                   .read(photoNotifierProvider.notifier)
-                  .getPhotoList(context),
+                  .getPhotoList(),
               icon: const Icon(Icons.refresh),
             );
           },

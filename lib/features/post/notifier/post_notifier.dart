@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:riverpod_testing/app_constants/app_route_configuration.dart';
 import 'package:riverpod_testing/core/exception_handler/exception_handler.dart';
+import 'package:riverpod_testing/core/network/exception/base_exception.dart';
 import 'package:riverpod_testing/core/network/exception/not_found_exception.dart';
 import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
@@ -34,21 +36,23 @@ class PostNotifier extends StateNotifier<AsyncValue<List<PostVO>>> {
   }
 }
 
-class PhotoNotifier extends StateNotifier<AsyncValue<List<String>>> {
+class PhotoNotifier extends StateNotifier<AsyncValue> {
   final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
-
+  final BuildContext context;
   final int itemsPerPage = 10;
+
   int currentPage = 1;
   List<String> allPhotos = [];
-
   List<String> get allFetchedPhotos => allPhotos;
 
-  PhotoNotifier(this._getPhotoUseCaseImpl)
-      : super(const AsyncLoading()) {
+  PhotoNotifier(
+    this._getPhotoUseCaseImpl,
+    this.context,
+  ) : super(const AsyncLoading()) {
     getPhotoList();
   }
 
-  void getPhotoList([BuildContext? context]) async {
+  void getPhotoList() async {
     if (allPhotos.isEmpty) state = const AsyncLoading();
     try {
       final result = await _getPhotoUseCaseImpl.getPhotoList();
@@ -59,12 +63,11 @@ class PhotoNotifier extends StateNotifier<AsyncValue<List<String>>> {
       if (allPhotos.isEmpty) {
         state = AsyncValue.error(e, s);
       } else {
-        // state.handleSpecificException(
-        //   onNetworkException: (_) => Fluttertoast.showToast(msg: _??""),
-        //   // onNotFoundException: (_)=> debugPrint("Not Found For this API"),
-        //   onCommonException: (_) => Fluttertoast.showToast(msg: _??""),
-        // );
-        Fluttertoast.showToast(msg: "Error");
+        e.handleSpecificException(
+          onNetworkException: (_) => showErrorDialog(_ ?? "", context),
+          onNotFoundException: (_) => showErrorDialog(_ ?? "", context),
+          onCommonException: (_) => showErrorDialog(_ ?? "", context),
+        );
       }
     }
   }
@@ -80,11 +83,11 @@ class PhotoTestingNotifier extends StateNotifier<AsyncValue<List<String>>> {
   void getPhotoList(BuildContext context) async {
     state = const AsyncLoading();
     state = await _getPhotoTestUseCaseImpl.getPhotoTestingList();
-    state.handleSpecificException(
-      onNetworkException: (_) => showErrorDialog(_, context),
-      // onNotFoundException: (_)=> debugPrint("Not Found For this API"),
-      onCommonException: (_) => showErrorDialog(_, context),
-    );
+    // state.handleSpecificException(
+    //   onNetworkException: (_) => showErrorDialog(_, context),
+    //   // onNotFoundException: (_)=> debugPrint("Not Found For this API"),
+    //   onCommonException: (_) => showErrorDialog(_, context),
+    // );
   }
 }
 
