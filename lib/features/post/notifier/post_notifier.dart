@@ -1,19 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:riverpod_testing/app_constants/app_route_configuration.dart';
-import 'package:riverpod_testing/core/exception_handler/exception_handler.dart';
-import 'package:riverpod_testing/core/network/exception/base_exception.dart';
-import 'package:riverpod_testing/core/network/exception/not_found_exception.dart';
 import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
-import 'package:riverpod_testing/features/post/provider/post_provider.dart';
 
+import '../../../core/state.dart';
 import '../../../data_model/vo/post_vo.dart';
 import '../../../domain/get_photo/get_photo_usecase_impl.dart';
 import '../../../domain/get_photo_testing/get_photo_testing_usecase_impl.dart';
 import '../../../domain/get_posts/get_posts_usecase_impl.dart';
 
-class PostNotifier extends StateNotifier<AsyncValue<List<PostVO>>> {
+class PostNotifier extends StateNotifier<State<List<PostVO>>> {
   final GetPostsUseCaseImpl _getPostsUseCaseImpl;
   final AddFavouritePostUseCaseImpl _addFavouritePostUseCaseImpl;
   final GetPhotoTestUseCaseImpl _getPhotoTestUseCaseImpl;
@@ -22,7 +16,7 @@ class PostNotifier extends StateNotifier<AsyncValue<List<PostVO>>> {
     this._getPostsUseCaseImpl,
     this._addFavouritePostUseCaseImpl,
     this._getPhotoTestUseCaseImpl,
-  ) : super(const AsyncLoading()) {
+  ) : super(const State.init()) {
     getPostList();
   }
 
@@ -31,45 +25,34 @@ class PostNotifier extends StateNotifier<AsyncValue<List<PostVO>>> {
   }
 
   void getPostList() async {
-    state = const AsyncLoading();
-    state = await _getPostsUseCaseImpl.getPostList();
+    state = const State.loading();
+    final postList = await _getPostsUseCaseImpl.getPostList();
+    state = State.success(postList);
   }
 }
 
-class PhotoNotifier extends StateNotifier<AsyncValue> {
+class PhotoNotifier extends StateNotifier<State<List<String>>> {
   final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
-  final BuildContext context;
+
+  // final BuildContext context;
   final int itemsPerPage = 10;
 
   int currentPage = 1;
   List<String> allPhotos = [];
+
   List<String> get allFetchedPhotos => allPhotos;
 
   PhotoNotifier(
     this._getPhotoUseCaseImpl,
-    this.context,
-  ) : super(const AsyncLoading()) {
+    // this.context,
+  ) : super(const State.loading()) {
     getPhotoList();
   }
 
   void getPhotoList() async {
-    if (allPhotos.isEmpty) state = const AsyncLoading();
-    try {
-      final result = await _getPhotoUseCaseImpl.getPhotoList();
-      allPhotos.addAll(result);
-      currentPage++;
-      state = AsyncValue.data(allPhotos);
-    } catch (e, s) {
-      if (allPhotos.isEmpty) {
-        state = AsyncValue.error(e, s);
-      } else {
-        e.handleSpecificException(
-          onNetworkException: (_) => showErrorDialog(_ ?? "", context),
-          onNotFoundException: (_) => showErrorDialog(_ ?? "", context),
-          onCommonException: (_) => showErrorDialog(_ ?? "", context),
-        );
-      }
-    }
+    state = const State.loading();
+    final photoList = await _getPhotoUseCaseImpl.getPhotoList();
+    state = State.success(photoList);
   }
 }
 
@@ -80,7 +63,7 @@ class PhotoTestingNotifier extends StateNotifier<AsyncValue<List<String>>> {
     this._getPhotoTestUseCaseImpl,
   ) : super(const AsyncLoading());
 
-  void getPhotoList(BuildContext context) async {
+  void getPhotoList() async {
     state = const AsyncLoading();
     state = await _getPhotoTestUseCaseImpl.getPhotoTestingList();
     // state.handleSpecificException(
@@ -90,21 +73,21 @@ class PhotoTestingNotifier extends StateNotifier<AsyncValue<List<String>>> {
     // );
   }
 }
-
-showErrorDialog(String? msg, BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text("$msg"),
-      content: Text("${msg}"),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text('OK'),
-        ),
-      ],
-    ),
-  );
-}
+//
+// showErrorDialog(String? msg, BuildContext context) {
+//   showDialog(
+//     context: context,
+//     builder: (context) => AlertDialog(
+//       title: Text("$msg"),
+//       content: Text("${msg}"),
+//       actions: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.of(context).pop();
+//           },
+//           child: Text('OK'),
+//         ),
+//       ],
+//     ),
+//   );
+// }

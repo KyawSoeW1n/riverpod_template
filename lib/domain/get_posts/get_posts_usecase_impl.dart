@@ -10,11 +10,7 @@ class GetPostsUseCaseImpl extends GetPostsUseCase {
   GetPostsUseCaseImpl(this._postRemoteDataSourceImpl);
 
   @override
-  Future<AsyncValue<List<PostVO>>> getPostList() async {
-    try {
-      return await _postRemoteDataSourceImpl.getPostList();
-    } catch (e) {
-      return AsyncError(e, StackTrace.current);
-    }
+  Future<List<PostVO>> getPostList() async {
+    return await _postRemoteDataSourceImpl.getPostList();
   }
 }
