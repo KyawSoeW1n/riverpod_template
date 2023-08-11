@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class DioExceptions implements Exception {
   DioExceptions.fromDioError(DioError dioError) {
@@ -23,7 +24,7 @@ class DioExceptions implements Exception {
   String? message;
 
   String _handleError(int? statusCode, dynamic error) {
-    print("Status code $statusCode");
+    debugPrint("Status code $statusCode");
     switch (statusCode) {
       case 400:
         return 'Bad request';

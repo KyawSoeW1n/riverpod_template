@@ -1,70 +1,18 @@
-/// albumId : 1
-/// id : 1
-/// title : "accusamus beatae ad facilis cum similique qui sunt"
-/// url : "https://via.placeholder.com/600/92c952"
-/// thumbnailUrl : "https://via.placeholder.com/150/92c952"
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class PhotoResponse {
-  PhotoResponse({
-    int? albumId,
-    int? id,
-    String? title,
-    String? url,
-    String? thumbnailUrl,
-  }) {
-    _albumId = albumId;
-    _id = id;
-    _title = title;
-    _url = url;
-    _thumbnailUrl = thumbnailUrl;
-  }
+part 'photo_response.freezed.dart';
+part 'photo_response.g.dart';
 
-  PhotoResponse.fromJson(dynamic json) {
-    _albumId = json['albumId'];
-    _id = json['id'];
-    _title = json['title'];
-    _url = json['url'];
-    _thumbnailUrl = json['thumbnailUrl'];
-  }
+@freezed
+class PhotoResponse with _$PhotoResponse {
+  const factory PhotoResponse({
+    required String title,
+    required String thumbnailUrl,
+    required String url,
+    required int albumId,
+    required int id,
+  }) = _PhotoResponse;
 
-  int? _albumId;
-  int? _id;
-  String? _title;
-  String? _url;
-  String? _thumbnailUrl;
-
-  PhotoResponse copyWith({
-    int? albumId,
-    int? id,
-    String? title,
-    String? url,
-    String? thumbnailUrl,
-  }) =>
-      PhotoResponse(
-        albumId: albumId ?? _albumId,
-        id: id ?? _id,
-        title: title ?? _title,
-        url: url ?? _url,
-        thumbnailUrl: thumbnailUrl ?? _thumbnailUrl,
-      );
-
-  int? get albumId => _albumId;
-
-  int? get id => _id;
-
-  String? get title => _title;
-
-  String? get url => _url;
-
-  String? get thumbnailUrl => _thumbnailUrl;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['albumId'] = _albumId;
-    map['id'] = _id;
-    map['title'] = _title;
-    map['url'] = _url;
-    map['thumbnailUrl'] = _thumbnailUrl;
-    return map;
-  }
+  factory PhotoResponse.fromJson(Map<String, Object?> json) =>
+      _$PhotoResponseFromJson(json);
 }

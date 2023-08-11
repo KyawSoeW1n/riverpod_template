@@ -8,10 +8,6 @@ import '../../core/network/exception/app_exception.dart';
 import '../../core/network/exception/not_found_exception.dart';
 import '../../core/network/exception/service_unavailable_exception.dart';
 
-Exception handleError(String error) {
-  return AppException(message: error);
-}
-
 Exception handleDioError(DioError dioError) {
   switch (dioError.type) {
     case DioErrorType.cancel:
@@ -28,10 +24,8 @@ Exception handleDioError(DioError dioError) {
       return _parseDioErrorResponse(dioError);
     case DioErrorType.badCertificate:
       return AppException(message: "Bad Certificate");
-      break;
     case DioErrorType.connectionError:
       return TimeoutException("Receive timeout in connection with API server");
-      break;
   }
 }
 
@@ -50,7 +44,7 @@ Exception _parseDioErrorResponse(DioError dioError) {
       // );
     }
     serverMessage = dioError.response?.data["message"];
-  } catch (e, s) {
+  } catch (e) {
     serverMessage = "Something went wrong. Please try again later.";
   }
 
@@ -58,7 +52,7 @@ Exception _parseDioErrorResponse(DioError dioError) {
     case HttpStatus.serviceUnavailable:
       return ServiceUnavailableException("Service Temporarily Unavailable");
     case HttpStatus.notFound:
-      return NotFoundException(serverMessage ?? "", "Not Found");
+      return NotFoundException(serverMessage ?? "Request URL Not Found", "Not Found");
     default:
       return ApiException(
         httpCode: statusCode,

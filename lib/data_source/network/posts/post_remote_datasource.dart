@@ -1,7 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-abstract class PostsRemoteDataSource {
-  Future<AsyncValue<List<String>>> getPostList();
+import '../../../data_model/vo/post_vo.dart';
 
-  Future<AsyncValue<List<String>>> getPhotoList();
+abstract class PostsRemoteDataSource {
+  Future<List<PostVO>> getPostList();
+
+  Future<List<String>> getPhotoList();
+
+  Future<AsyncValue<List<String>>> getPhotoTestingList();
 }

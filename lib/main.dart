@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
 import 'package:riverpod_testing/resource/theme.dart';
 
 import 'app_constants/app_route_configuration.dart';
@@ -10,9 +11,10 @@ import 'data_source/local/app_database.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-
+  Hive.registerAdapter(FavouritePostAdapter());
   final dbService = DatabaseService();
   await dbService.initTheme();
+  await dbService.initFavouriteBox();
   runApp(
     ProviderScope(
       overrides: [
