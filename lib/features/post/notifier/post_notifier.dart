@@ -3,7 +3,6 @@ import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_us
 
 import '../../../core/state.dart';
 import '../../../data_model/vo/post_vo.dart';
-import '../../../domain/get_photo/get_photo_usecase_impl.dart';
 import '../../../domain/get_photo_testing/get_photo_testing_usecase_impl.dart';
 import '../../../domain/get_posts/get_posts_usecase_impl.dart';
 
@@ -29,24 +28,6 @@ class PostNotifier extends StateNotifier<State<List<PostVO>>> {
   }
 }
 
-class PhotoNotifier extends StateNotifier<AsyncValue<List<String>>> {
-  final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
-
-  PhotoNotifier(
-    this._getPhotoUseCaseImpl,
-  ) : super(const AsyncValue.loading()) {
-    getPhotoList();
-  }
-
-  void getPhotoList() async {
-    state = const AsyncValue.loading();
-    final photoList = await _getPhotoUseCaseImpl.getPhotoList();
-    state = AsyncValue.data([
-      "https://via.placeholder.com/600/509aba",
-      "https://via.placeholder.com/600/12ae65"
-    ]);
-  }
-}
 
 class PhotoTestingNotifier extends StateNotifier<AsyncValue<List<String>>> {
   final GetPhotoTestUseCaseImpl _getPhotoTestUseCaseImpl;

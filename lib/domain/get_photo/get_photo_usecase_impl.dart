@@ -1,5 +1,7 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/data_source/network/photo/photo_remote_datasource_impl.dart';
 
+import '../../features/photo/provider/photo_provider.dart';
 import 'get_photo_usecase.dart';
 
 class GetPhotoUseCaseImpl extends GetPhotoUseCase {
@@ -16,3 +18,6 @@ class GetPhotoUseCaseImpl extends GetPhotoUseCase {
     }
   }
 }
+
+final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
+    (ref) => GetPhotoUseCaseImpl(ref.watch(photoRemoteDataSourceImpl)));
