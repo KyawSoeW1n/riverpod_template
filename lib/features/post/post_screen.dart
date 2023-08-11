@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
 import 'package:riverpod_testing/features/post/widgets/error_handling_widget.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
-import 'package:riverpod_testing/widget/posts/post_item.dart';
+import 'package:riverpod_testing/widget/common/loading_widget.dart';
 
 import '../../app_constants/app_routes.dart';
 import '../../core/base/base_view.dart';
@@ -39,6 +40,7 @@ class PostScreen extends BaseView {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
+    final refreshController = RefreshController();
     final postProvider = ref.watch(postNotifierProvider);
     final photoProvider = ref.watch(photoNotifierProvider);
     final getFavouritePostsProvider = ref.watch(favouritePostsStreamProvider);
@@ -68,73 +70,47 @@ class PostScreen extends BaseView {
           flex: 1,
           child: Consumer(
             builder: (context, ref, _) {
-              return photoProvider.maybeWhen(
-                success: (content) => ListView.builder(
-                  itemCount: content.length,
-                  itemBuilder: (context, index) {
-                    return PostItem(
-                      index,
-                      content[index],
-                      ref.read(postNotifierProvider.notifier).addFavouritePost,
-                    );
-                  },
-                ),
-                error: (e) => ErrorHandlingWidget(exception: e),
-                orElse: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            },
-          ),
-        ),
-        Expanded(
-          child: Consumer(
-            builder: (context, ref, _) {
-              return postProvider.maybeWhen(
-                success: (content) => ListView.builder(
-                  itemCount: content.length,
-                  itemBuilder: (context, index) {
-                    return PostItem(
-                      index,
-                      content[index].title,
-                      ref.read(postNotifierProvider.notifier).addFavouritePost,
-                    );
-                  },
-                ),
-                error: (e) => ErrorHandlingWidget(exception: e),
-                orElse: () => const Center(
-                  child: CircularProgressIndicator(),
+              return SmartRefresher(
+                onRefresh: () =>
+                    ref.read(photoNotifierProvider.notifier).getPhotoList(),
+                enablePullUp: true,
+                enablePullDown: true,
+                onLoading: () =>
+                    ref.read(photoNotifierProvider.notifier).getPhotoList(),
+                controller:
+                    ref.read(photoNotifierProvider.notifier).refreshController,
+                child: photoProvider.maybeWhen(
+                  success: (content) => ListView.builder(
+                    itemCount: content.length,
+                    itemBuilder: (context, index) {
+                      return Text(content[index]);
+                    },
+                  ),
+                  error: (e) => ErrorHandlingWidget(exception: e),
+                  orElse: () => const SizedBox(),
                 ),
               );
             },
           ),
         ),
         // Expanded(
-        //   flex: 1,
-        //   child: postProvider.when(
-        //     loading: () => const Center(
-        //       child: CircularProgressIndicator(
-        //         color: Colors.amber,
-        //       ),
-        //     ),
-        //     error: (err, stack) => Center(
-        //       child: ElevatedButton(
-        //         onPressed: () {
-        //           ref.read(postNotifierProvider.notifier).getPostList();
-        //         },
-        //         child: const Text("Try Again"),
-        //       ),
-        //     ),
-        //     data: (config) {
-        //       return ListView.builder(
-        //         itemCount: config.length,
-        //         itemBuilder: (context, index) {
-        //           return PostItem(
-        //             index,
-        //             config[index].title,
-        //             ref.read(postNotifierProvider.notifier).addFavouritePost,
-        //           );
-        //         },
+        //   child: Consumer(
+        //     builder: (context, ref, _) {
+        //       return postProvider.maybeWhen(
+        //         success: (content) => ListView.builder(
+        //           itemCount: content.length,
+        //           itemBuilder: (context, index) {
+        //             return PostItem(
+        //               index,
+        //               content[index].title,
+        //               ref.read(postNotifierProvider.notifier).addFavouritePost,
+        //             );
+        //           },
+        //         ),
+        //         error: (e) => ErrorHandlingWidget(exception: e),
+        //         orElse: () => const Center(
+        //           child: CircularProgressIndicator(),
+        //         ),
         //       );
         //     },
         //   ),

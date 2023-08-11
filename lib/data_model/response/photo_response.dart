@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'photo_response.freezed.dart';
-
 part 'photo_response.g.dart';
 
 @freezed

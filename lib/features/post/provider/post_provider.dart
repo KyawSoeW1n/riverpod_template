@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_testing/app_constants/app_route_configuration.dart';
 import 'package:riverpod_testing/data_source/local/app_database.dart';
 import 'package:riverpod_testing/data_source/local/favourite_post/favourite_post_local_datasource_impl.dart';
 import 'package:riverpod_testing/domain/get_photo/get_photo_usecase_impl.dart';
@@ -45,7 +44,6 @@ final postNotifierProvider =
   return PostNotifier(
     ref.read(getPostUseCaseImpl),
     ref.read(addFavouritePostUseCaseImpl),
-    ref.read(getPhotoTestUseCaseImpl),
   );
 });
 
