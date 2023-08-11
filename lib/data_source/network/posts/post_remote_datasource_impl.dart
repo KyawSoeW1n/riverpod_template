@@ -19,28 +19,28 @@ class PostRemoteDataSourceImpl extends BaseRemoteSource
   );
 
   @override
-  Future<AsyncValue<List<String>>> getPhotoList() async {
+  Future<List<String>> getPhotoList() async {
     try {
       const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
       return callApiWithErrorParser(() => dioClient.get(endpoint))
           .then((response) {
-        return AsyncData(_photoMapper.mapFromResponse(response.data));
+        return _photoMapper.mapFromResponse(response.data);
       });
     } catch (e) {
-      return AsyncError(e, StackTrace.current);
+      rethrow;
     }
   }
 
   @override
-  Future<AsyncValue<List<PostVO>>> getPostList() async {
+  Future<List<PostVO>> getPostList() async {
     try {
       const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getToDoList}";
       return callApiWithErrorParser(() => dioClient.get(endpoint))
           .then((response) {
-        return AsyncData(_postMapper.mapFromResponse(response.data));
+        return _postMapper.mapFromResponse(response.data);
       });
     } catch (e) {
-      return AsyncError(e, StackTrace.current);
+      rethrow;
     }
   }
 

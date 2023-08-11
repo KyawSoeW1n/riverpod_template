@@ -6,6 +6,7 @@ import 'package:riverpod_testing/domain/get_photo_testing/get_photo_testing_usec
 import 'package:riverpod_testing/domain/get_posts/get_posts_usecase_impl.dart';
 import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
+import '../../../core/state.dart';
 import '../../../data_model/vo/post_vo.dart';
 import '../../../data_source/network/posts/post_remote_datasource_impl.dart';
 import '../../../domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
@@ -30,7 +31,7 @@ final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
     (ref) => GetPhotoUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
 
 final getPhotoTestUseCaseImpl = Provider<GetPhotoTestUseCaseImpl>(
-        (ref) => GetPhotoTestUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
+    (ref) => GetPhotoTestUseCaseImpl(ref.read(postRemoteDataSourceImpl)));
 
 final addFavouritePostUseCaseImpl = Provider<AddFavouritePostUseCaseImpl>(
     (ref) => AddFavouritePostUseCaseImpl(ref.read(postLocalDataSourceImpl)));
@@ -39,7 +40,7 @@ final getFavouritePostUseCaseImpl = Provider<GetFavouritePostUseCaseImpl>(
     (ref) => GetFavouritePostUseCaseImpl(ref.read(postLocalDataSourceImpl)));
 
 final postNotifierProvider =
-    StateNotifierProvider<PostNotifier, AsyncValue<List<PostVO>>>((ref) {
+    StateNotifierProvider<PostNotifier, State<List<PostVO>>>((ref) {
   return PostNotifier(
     ref.read(getPostUseCaseImpl),
     ref.read(addFavouritePostUseCaseImpl),
@@ -47,12 +48,15 @@ final postNotifierProvider =
 });
 
 final photoNotifierProvider =
-    StateNotifierProvider<PhotoNotifier, AsyncValue<List<String>>>((ref) {
-  return PhotoNotifier(ref.read(getPhotoUseCaseImpl));
+    StateNotifierProvider<PhotoNotifier, State<List<String>>>((ref) {
+  return PhotoNotifier(
+    ref.read(getPhotoUseCaseImpl),
+  );
 });
 
 final photoTestNotifierProvider =
-    StateNotifierProvider<PhotoTestingNotifier, AsyncValue<List<String>>>((ref) {
+    StateNotifierProvider<PhotoTestingNotifier, AsyncValue<List<String>>>(
+        (ref) {
   return PhotoTestingNotifier(ref.read(getPhotoTestUseCaseImpl));
 });
 

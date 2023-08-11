@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -39,6 +39,7 @@ dependencies:
   flutter_riverpod: ^2.3.2
   hooks_riverpod: ^2.3.2
   connectivity_plus: ^2.3.9
+  state_notifier: ^0.7.2+1
 
   #Navigation
   go_router: ^7.0.1
@@ -62,6 +63,8 @@ dependencies:
   fluttertoast: ^8.2.1
 
   rxdart: ^0.27.7
+
+  pull_to_refresh: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

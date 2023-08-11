@@ -8,27 +8,23 @@ class ErrorHandlingWidget extends BaseErrorHandlingView {
     required this.exception,
     Key? key,
   }) : super(
-          key: key,
-          errorException: exception,
-        );
+    key: key,
+    errorException: exception,
+  );
 
   @override
-  Widget noInternetView(message) {
-    return Center(
-      child: Text(
-        "Override View-> $message",
-        style: const TextStyle(color: Colors.red),
-      ),
+  Widget noInterNetView(message) {
+    return  Text(
+      "Override View-> $message",
+      style: const TextStyle(color: Colors.red),
     );
   }
 
   @override
   Widget notFoundView(message) {
-    return Center(
-      child: Text(
-        "Override View-> $message",
-        style: const TextStyle(color: Colors.blue),
-      ),
+    return  Text(
+      "Override View-> $message",
+      style: const TextStyle(color: Colors.blue),
     );
   }
 }
