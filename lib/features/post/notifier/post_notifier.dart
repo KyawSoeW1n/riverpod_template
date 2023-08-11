@@ -12,12 +12,10 @@ import '../../../domain/get_posts/get_posts_usecase_impl.dart';
 class PostNotifier extends StateNotifier<State<List<PostVO>>> {
   final GetPostsUseCaseImpl _getPostsUseCaseImpl;
   final AddFavouritePostUseCaseImpl _addFavouritePostUseCaseImpl;
-  final GetPhotoTestUseCaseImpl _getPhotoTestUseCaseImpl;
 
   PostNotifier(
     this._getPostsUseCaseImpl,
     this._addFavouritePostUseCaseImpl,
-    this._getPhotoTestUseCaseImpl,
   ) : super(const State.init()) {
     getPostList();
   }
