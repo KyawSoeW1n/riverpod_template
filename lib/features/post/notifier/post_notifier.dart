@@ -29,24 +29,22 @@ class PostNotifier extends StateNotifier<State<List<PostVO>>> {
   }
 }
 
-class PhotoNotifier extends StateNotifier<State<List<String>>> {
+class PhotoNotifier extends StateNotifier<AsyncValue<List<String>>> {
   final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
-
-  // final BuildContext context;
-  final int itemsPerPage = 10;
-
-  int currentPage = 1;
 
   PhotoNotifier(
     this._getPhotoUseCaseImpl,
-  ) : super(const State.loading()) {
+  ) : super(const AsyncValue.loading()) {
     getPhotoList();
   }
 
   void getPhotoList() async {
-    state = const State.loading();
+    state = const AsyncValue.loading();
     final photoList = await _getPhotoUseCaseImpl.getPhotoList();
-    state = State.success(photoList);
+    state = AsyncValue.data([
+      "https://via.placeholder.com/600/509aba",
+      "https://via.placeholder.com/600/12ae65"
+    ]);
   }
 }
 
