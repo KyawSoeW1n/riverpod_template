@@ -1,15 +1,27 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
 import 'package:riverpod_testing/resource/theme.dart';
 
+import 'app_constants/app_route_configuration.dart';
 import 'core/theme_provider.dart';
-import 'features/post_screen.dart';
+import 'data_source/local/app_database.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(FavouritePostAdapter());
+  final dbService = DatabaseService();
+  await dbService.initTheme();
+  await dbService.initFavouriteBox();
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      overrides: [
+        databaseService.overrideWith((_) => dbService),
+      ],
+      child: const MyApp(),
     ),
   );
 }
