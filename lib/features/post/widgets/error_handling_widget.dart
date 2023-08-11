@@ -16,7 +16,7 @@ class ErrorHandlingWidget extends BaseErrorHandlingView {
   Widget noInterNetView(message) {
     return  Text(
       "Override View-> $message",
-      style: TextStyle(color: Colors.red),
+      style: const TextStyle(color: Colors.red),
     );
   }
 
@@ -24,7 +24,7 @@ class ErrorHandlingWidget extends BaseErrorHandlingView {
   Widget notFoundView(message) {
     return  Text(
       "Override View-> $message",
-      style: TextStyle(color: Colors.blue),
+      style: const TextStyle(color: Colors.blue),
     );
   }
 }
