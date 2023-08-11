@@ -5,7 +5,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
 import 'package:riverpod_testing/features/post/widgets/error_handling_widget.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
-import 'package:riverpod_testing/widget/common/loading_widget.dart';
 
 import '../../app_constants/app_routes.dart';
 import '../../core/base/base_view.dart';
@@ -73,12 +72,11 @@ class PostScreen extends BaseView {
               return SmartRefresher(
                 onRefresh: () =>
                     ref.read(photoNotifierProvider.notifier).getPhotoList(),
-                enablePullUp: true,
+                // enablePullUp: true,
                 enablePullDown: true,
-                onLoading: () =>
-                    ref.read(photoNotifierProvider.notifier).getPhotoList(),
-                controller:
-                    ref.read(photoNotifierProvider.notifier).refreshController,
+                // onLoading: () =>
+                //     ref.read(photoNotifierProvider.notifier).getPhotoList(),
+                controller: refreshController,
                 child: photoProvider.maybeWhen(
                   success: (content) => ListView.builder(
                     itemCount: content.length,

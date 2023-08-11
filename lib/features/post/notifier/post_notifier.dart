@@ -1,7 +1,5 @@
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_testing/domain/add_favourite_post/add_favourite_post_usecase_impl.dart';
-import 'package:riverpod_testing/extension/refresh_controller_extension.dart';
 
 import '../../../core/state.dart';
 import '../../../data_model/vo/post_vo.dart';
@@ -33,7 +31,6 @@ class PostNotifier extends StateNotifier<State<List<PostVO>>> {
 
 class PhotoNotifier extends StateNotifier<State<List<String>>> {
   final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
-  final refreshController = RefreshController();
 
   // final BuildContext context;
   final int itemsPerPage = 10;
@@ -49,8 +46,7 @@ class PhotoNotifier extends StateNotifier<State<List<String>>> {
   void getPhotoList() async {
     state = const State.loading();
     final photoList = await _getPhotoUseCaseImpl.getPhotoList();
-    state = State.success(photoList.take(100).toList());
-    refreshController.resetRefreshController();
+    state = State.success(photoList);
   }
 }
 
