@@ -8,6 +8,7 @@ import 'package:riverpod_testing/resource/theme.dart';
 import 'app_constants/app_route_configuration.dart';
 import 'core/theme_provider.dart';
 import 'data_source/local/app_database.dart';
+import 'features/post/post_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class MyApp extends ConsumerWidget {
     final isPlatformDark =
         WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
     final initTheme = isPlatformDark ? ThemeData.dark() : ThemeData.light();
-    final themMode = ref.read(themeModeProvider);
+    // final themMode = ref.read(themeController);
     return ThemeProvider(
       initTheme: initTheme,
       builder: (_, myTheme) {
@@ -49,9 +50,9 @@ class MyApp extends ConsumerWidget {
             useMaterial3: true,
             colorScheme: darkColorScheme,
           ),
-          themeMode: themMode,
+          // themeMode: themMode,
           // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-          home: const PostScreen(),
+          home: PostScreen(),
         );
       },
     );
