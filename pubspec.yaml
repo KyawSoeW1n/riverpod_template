@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   riverpod: ^2.3.2
   flutter_riverpod: ^2.3.2
-  hooks_riverpod: ^2.3.2
+#  hooks_riverpod: ^2.3.2
   connectivity_plus: ^2.3.9
 
   #Navigation
@@ -63,6 +63,7 @@ dependencies:
 
   #Toast
   fluttertoast: ^8.2.1
+
 
   rxdart: ^0.27.7
 
