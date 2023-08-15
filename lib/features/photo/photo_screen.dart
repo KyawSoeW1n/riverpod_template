@@ -33,39 +33,40 @@ class PhotoScreen extends BaseView {
     return Consumer(
       builder: (context, ref, _) {
         return SmartRefresher(
-          onRefresh: () async =>
-          await ref
-              .read(photoNotifierProvider.notifier)
-              .getPhotoList(refreshController: refreshController),
-          // enablePullUp: true,
-          enablePullDown: true,
+          // onRefresh: () async => await ref
+          //     .read(photoNotifierProvider)
+          //     .getPhotoList(refreshController: refreshController),
+          // // enablePullUp: true,
+          // enablePullDown: true,
 
           // onLoading: () =>
           //     ref.read(photoNotifierProvider.notifier).getPhotoList(),
           controller: refreshController,
           child: photoProvider.maybeWhen(
               orElse: () {
-                return const SizedBox();
+                // return const SizedBox();
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
               },
-              success: (content) =>
-                  CustomScrollView(
+              data: (content) => CustomScrollView(
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                            return   CachedNetworkImage(
+                          (BuildContext context, int index) {
+                            return CachedNetworkImage(
                               height: 300,
                               width: 300,
                               fit: BoxFit.cover,
                               imageUrl: content[index],
                             );
                           },
-                          childCount: content.length, // Number of items in the list
+                          childCount:
+                              content.length, // Number of items in the list
                         ),
                       ),
                     ],
-                  )
-          ),
+                  )),
         );
       },
     );
