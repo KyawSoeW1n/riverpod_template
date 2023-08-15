@@ -33,23 +33,20 @@ class PhotoScreen extends BaseView {
     return Consumer(
       builder: (context, ref, _) {
         return SmartRefresher(
-          // onRefresh: () async => await ref
-          //     .read(photoNotifierProvider)
-          //     .getPhotoList(refreshController: refreshController),
+          onRefresh: () async => await ref
+              .read(photoNotifierProvider.notifier)
+              .getPhotoList(refreshController: refreshController),
           // // enablePullUp: true,
-          // enablePullDown: true,
-
+          enablePullDown: true,
+          //
           // onLoading: () =>
           //     ref.read(photoNotifierProvider.notifier).getPhotoList(),
           controller: refreshController,
           child: photoProvider.maybeWhen(
               orElse: () {
-                // return const SizedBox();
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const SizedBox();
               },
-              data: (content) => CustomScrollView(
+              success: (content) => CustomScrollView(
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate(

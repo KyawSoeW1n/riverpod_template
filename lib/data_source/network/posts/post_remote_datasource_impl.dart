@@ -9,9 +9,6 @@ import '../../../data_model/vo/post_vo.dart';
 import '../../../mapper/photo_mapper.dart';
 import '../photo/photo_remote_datasource_impl.dart';
 
-final photoRemoteDataSourceImpl = Provider<PhotoRemoteDataSourceImpl>(
-    (ref) => PhotoRemoteDataSourceImpl(ref.watch(photoMapper)));
-
 class PostRemoteDataSourceImpl extends BaseRemoteSource
     implements PostsRemoteDataSource {
   final PostMapper _postMapper;

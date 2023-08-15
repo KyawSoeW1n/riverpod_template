@@ -5,9 +5,11 @@ import 'package:riverpod_testing/extension/refresh_controller_extension.dart';
 import '../../../core/state.dart';
 import '../../../domain/get_photo/get_photo_usecase_impl.dart';
 
-final photoNotifierProvider = FutureProvider<List<String>>((ref) {
-  final getPhotoUseCase = ref.watch(getPhotoUseCaseImpl);
-  return getPhotoUseCase.getPhotoList();
+final photoNotifierProvider =
+    StateNotifierProvider<PhotoNotifier, State<List<String>>>((ref) {
+  return PhotoNotifier(
+    ref.watch(getPhotoUseCaseImpl),
+  );
 });
 
 class PhotoNotifier extends StateNotifier<State<List<String>>> {
