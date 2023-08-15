@@ -33,14 +33,14 @@ class PhotoScreen extends BaseView {
     return Consumer(
       builder: (context, ref, _) {
         return SmartRefresher(
-          onRefresh: () async => await ref
+          onRefresh: () => ref
               .read(photoNotifierProvider.notifier)
               .getPhotoList(refreshController: refreshController),
-          // // enablePullUp: true,
+          enablePullUp: true,
           enablePullDown: true,
-          //
-          // onLoading: () =>
-          //     ref.read(photoNotifierProvider.notifier).getPhotoList(),
+          onLoading: () => ref
+              .read(photoNotifierProvider.notifier)
+              .getPhotoList(refreshController: refreshController),
           controller: refreshController,
           child: photoProvider.maybeWhen(
               orElse: () {

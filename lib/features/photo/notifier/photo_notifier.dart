@@ -22,9 +22,20 @@ class PhotoNotifier extends StateNotifier<State<List<String>>> {
   }
 
   Future<void> getPhotoList({RefreshController? refreshController}) async {
-    state = const State.loading();
+    if (state.data == null) {
+      state = const State.loading();
+    }
     final photoList = await _getPhotoUseCaseImpl.getPhotoList();
-    if (photoList != null) state = State.success(photoList);
+    if (photoList != null) {
+      if (state.data != null) {
+        state.data!.addAll(photoList);
+
+        // state = State.success(data);
+        state = State.success(state.data!);
+      } else {
+        state = State.success(photoList);
+      }
+    }
     refreshController?.resetRefreshController();
   }
 }
