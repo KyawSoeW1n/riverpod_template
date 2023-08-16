@@ -26,7 +26,7 @@ extension ExceptionExtension<T> on Object{ // Object may be BaseException or Asy
       errorException = (this as AsyncError).error;
     }
     if (errorException is NetworkException) {
-      onNetworkException?.call((errorException).message ?? '');
+      onNetworkException?.call((errorException).message);
       return;
     }
 
