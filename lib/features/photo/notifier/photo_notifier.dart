@@ -21,7 +21,11 @@ class PhotoNotifier extends StateNotifier<State<List<String>>> {
     getPhotoList();
   }
 
-  Future<void> getPhotoList({RefreshController? refreshController}) async {
+  Future<void> getPhotoList(
+      {RefreshController? refreshController, forceRefresh = false}) async {
+    if(forceRefresh){
+      state.data?.clear();
+    }
     if (state.data == null) {
       state = const State.loading();
     }

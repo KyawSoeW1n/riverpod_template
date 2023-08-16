@@ -24,18 +24,14 @@ class PhotoScreen extends BaseView {
     final refreshController = ref.watch(photoRefreshControllerProvider);
     final scrollController = ref.watch(photoScrollControllerProvider);
     final photoProvider = ref.watch(photoNotifierProvider);
-
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-    //   await ref
-    //       .read(photoNotifierProvider.notifier)
-    //       .getPhotoList(refreshController);
-    // });
     return Consumer(
       builder: (context, ref, _) {
         return SmartRefresher(
-          onRefresh: () => ref
-              .read(photoNotifierProvider.notifier)
-              .getPhotoList(refreshController: refreshController),
+          onRefresh: () =>
+              ref.read(photoNotifierProvider.notifier).getPhotoList(
+                    refreshController: refreshController,
+                    forceRefresh: true,
+                  ),
           enablePullUp: true,
           enablePullDown: true,
           onLoading: () => ref
@@ -43,27 +39,28 @@ class PhotoScreen extends BaseView {
               .getPhotoList(refreshController: refreshController),
           controller: refreshController,
           child: photoProvider.maybeWhen(
-              orElse: () {
-                return const SizedBox();
-              },
-              success: (content) => CustomScrollView(
-                    slivers: [
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            return CachedNetworkImage(
-                              height: 300,
-                              width: 300,
-                              fit: BoxFit.cover,
-                              imageUrl: content[index],
-                            );
-                          },
-                          childCount:
-                              content.length, // Number of items in the list
-                        ),
-                      ),
-                    ],
-                  )),
+            orElse: () {
+              return const SizedBox();
+            },
+            success: (content) => CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return CachedNetworkImage(
+                        height: 300,
+                        width: 300,
+                        fit: BoxFit.cover,
+                        imageUrl: content[index],
+                      );
+                    },
+                    childCount: content.length, // Number of items in the list
+                  ),
+                ),
+              ],
+            ),
+          ),
         );
       },
     );

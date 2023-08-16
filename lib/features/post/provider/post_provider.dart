@@ -49,10 +49,5 @@ final photoTestNotifierProvider =
 
 final favouritePostsStreamProvider = StreamProvider.autoDispose((ref) async* {
   final stream = ref.watch(databaseService).getFavouriteStream();
-  // var count = 0;
-  stream.listen((event) {
-    // count = event.length;
-  });
-
   yield* stream;
 });
