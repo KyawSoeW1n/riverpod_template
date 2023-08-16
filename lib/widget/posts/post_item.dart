@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_testing/data_model/vo/post_vo.dart';
 
 class PostItem extends StatelessWidget {
-  final int id;
-  final String title;
+  final PostVO postVO;
   final Function function;
+  final bool isFav;
 
   const PostItem(
-    this.id,
-    this.title,
+    this.postVO,
     this.function, {
+    this.isFav = false,
     Key? key,
   }) : super(key: key);
 
@@ -17,11 +18,13 @@ class PostItem extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text(title),
+          child: Text(postVO.title),
         ),
         IconButton(
-          onPressed: () => function(id, title),
-          icon: const Icon(Icons.favorite),
+          onPressed: () => function(postVO.id, postVO.title),
+          icon: isFav
+              ? const Icon(Icons.favorite)
+              : const Icon(Icons.favorite_outline),
         )
       ],
     );
