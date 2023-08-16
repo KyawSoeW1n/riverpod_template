@@ -11,6 +11,7 @@ import 'package:riverpod_testing/widget/common/common_app_bar.dart';
 import '../../app_constants/app_routes.dart';
 import '../../core/base/base_view.dart';
 import '../../widget/posts/post_item.dart';
+import '../favourite_posts/notifier/favourite_post_provider.dart';
 
 class PostScreen extends BaseView {
   PostScreen({super.key});

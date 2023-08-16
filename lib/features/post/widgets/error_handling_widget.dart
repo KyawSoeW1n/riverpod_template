@@ -13,7 +13,7 @@ class ErrorHandlingWidget extends BaseErrorHandlingView {
   );
 
   @override
-  Widget noInterNetView(message) {
+  Widget noInternetView(message) {
     return  Text(
       "Override View-> $message",
       style: const TextStyle(color: Colors.red),
