@@ -37,9 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   riverpod: ^2.3.2
   flutter_riverpod: ^2.3.2
-  hooks_riverpod: ^2.3.2
+#  hooks_riverpod: ^2.3.2
   connectivity_plus: ^2.3.9
-  state_notifier: ^0.7.2+1
 
   #Navigation
   go_router: ^7.0.1
@@ -53,6 +52,9 @@ dependencies:
 
   #Theme Animator
   animated_theme_switcher: ^2.0.8
+
+  #Shimmer
+  shimmer: ^3.0.0
 
   #Database
   hive: ^2.2.3

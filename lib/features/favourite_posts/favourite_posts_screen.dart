@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/core/base/base_view.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
 
-import '../post/provider/post_provider.dart';
+import 'notifier/favourite_post_provider.dart';
 
 class FavouritePostsScreen extends BaseView {
   FavouritePostsScreen({super.key});

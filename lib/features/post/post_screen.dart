@@ -3,12 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
+import 'package:riverpod_testing/features/post/provider/post_refresh_controller_provider.dart';
+import 'package:riverpod_testing/features/post/provider/post_scroll_controller_provider.dart';
 import 'package:riverpod_testing/features/post/widgets/error_handling_widget.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
-import 'package:riverpod_testing/widget/common/loading_widget.dart';
 
 import '../../app_constants/app_routes.dart';
 import '../../core/base/base_view.dart';
+import '../../widget/posts/post_item.dart';
+import '../favourite_posts/notifier/favourite_post_provider.dart';
 
 class PostScreen extends BaseView {
   PostScreen({super.key});
@@ -19,30 +22,23 @@ class PostScreen extends BaseView {
       "Posts",
       actionList: [
         IconButton(
+          onPressed: () => context.go("/${AppRoutes.photo}"),
+          icon: const Icon(Icons.account_tree),
+        ),
+        IconButton(
           onPressed: () => context.go("/${AppRoutes.setting}"),
           icon: const Icon(Icons.settings),
         ),
-        Consumer(
-          // 2. specify the builder and obtain a WidgetRef
-          builder: (_, WidgetRef ref, __) {
-            // 3. use ref.watch() to get the value of the provider
-            // final photoProvider = ref.watch(postNotifierProvider);
-            return IconButton(
-              onPressed: () =>
-                  ref.read(photoNotifierProvider.notifier).getPhotoList(),
-              icon: const Icon(Icons.refresh),
-            );
-          },
-        )
       ],
     );
   }
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    final refreshController = RefreshController();
+    final refreshController = ref.watch(postRefreshControllerProvider);
+    final scrollController = ref.watch(postScrollControllerProvider);
     final postProvider = ref.watch(postNotifierProvider);
-    final photoProvider = ref.watch(photoNotifierProvider);
+
     final getFavouritePostsProvider = ref.watch(favouritePostsStreamProvider);
     return Column(
       children: [
@@ -67,54 +63,45 @@ class PostScreen extends BaseView {
           },
         ),
         Expanded(
-          flex: 1,
           child: Consumer(
             builder: (context, ref, _) {
               return SmartRefresher(
+                controller: refreshController,
                 onRefresh: () =>
-                    ref.read(photoNotifierProvider.notifier).getPhotoList(),
-                enablePullUp: true,
-                enablePullDown: true,
-                onLoading: () =>
-                    ref.read(photoNotifierProvider.notifier).getPhotoList(),
-                controller:
-                    ref.read(photoNotifierProvider.notifier).refreshController,
-                child: photoProvider.maybeWhen(
-                  success: (content) => ListView.builder(
-                    itemCount: content.length,
-                    itemBuilder: (context, index) {
-                      return Text(content[index]);
-                    },
+                    ref.read(postNotifierProvider.notifier).getPostList(),
+                child: postProvider.maybeWhen(
+                  success: (content) => CustomScrollView(
+                    controller: scrollController,
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return PostItem(
+                              content[index],
+                              ref
+                                  .read(postNotifierProvider.notifier)
+                                  .addFavouritePost,
+                              isFav: getFavouritePostsProvider.value
+                                  !.where((element) =>
+                                      element.id == content[index].id)
+                                  .isNotEmpty,
+                            );
+                          },
+                          childCount:
+                              content.length, // Number of items in the list
+                        ),
+                      ),
+                    ],
                   ),
                   error: (e) => ErrorHandlingWidget(exception: e),
-                  orElse: () => const SizedBox(),
+                  orElse: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
               );
             },
           ),
         ),
-        // Expanded(
-        //   child: Consumer(
-        //     builder: (context, ref, _) {
-        //       return postProvider.maybeWhen(
-        //         success: (content) => ListView.builder(
-        //           itemCount: content.length,
-        //           itemBuilder: (context, index) {
-        //             return PostItem(
-        //               index,
-        //               content[index].title,
-        //               ref.read(postNotifierProvider.notifier).addFavouritePost,
-        //             );
-        //           },
-        //         ),
-        //         error: (e) => ErrorHandlingWidget(exception: e),
-        //         orElse: () => const Center(
-        //           child: CircularProgressIndicator(),
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // ),
       ],
     );
   }
