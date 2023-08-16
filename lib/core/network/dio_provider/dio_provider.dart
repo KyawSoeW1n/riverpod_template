@@ -26,12 +26,12 @@ class DioProvider {
     if (_instance == null) {
       _instance = Dio(_options);
       _addHeader();
-      _instance!.interceptors.add(_prettyDioLogger);
+      // _instance!.interceptors.add(_prettyDioLogger);
       return _instance!;
     } else {
       _addHeader();
       _instance!.interceptors.clear();
-      _instance!.interceptors.add(_prettyDioLogger);
+      // _instance!.interceptors.add(_prettyDioLogger);
       return _instance!;
     }
   }
@@ -64,6 +64,6 @@ class DioProvider {
   static _addInterceptors() {
     _instance ??= httpDio;
     _instance!.interceptors.clear();
-    _instance!.interceptors.add(_prettyDioLogger);
+    // _instance!.interceptors.add(_prettyDioLogger);
   }
 }
