@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -42,6 +45,25 @@ class PostScreen extends BaseView {
     final getFavouritePostsProvider = ref.watch(favouritePostsStreamProvider);
     return Column(
       children: [
+        // ThemeSwitcher.switcher(
+        //   clipper: const ThemeSwitcherBoxClipper(),
+        //   builder: (context, switcher) {
+        //     return OutlinedButton(
+        //       child: const Text('Box Animation'),
+        //       onPressed: () {
+        //         log(":::::: ${ThemeModelInheritedNotifier.of(context).theme.brightness}");
+        //         // switcher.changeTheme(
+        //         //   theme: ThemeModelInheritedNotifier.of(context)
+        //         //               .theme
+        //         //               .brightness ==
+        //         //           Brightness.light
+        //         //       ? ThemeData.light()
+        //         //       : ThemeData.dark(),
+        //         // );
+        //       },
+        //     );
+        //   },
+        // ),
         getFavouritePostsProvider.when(
           loading: () => const Center(
             child: CircularProgressIndicator(
@@ -81,8 +103,8 @@ class PostScreen extends BaseView {
                               ref
                                   .read(postNotifierProvider.notifier)
                                   .addFavouritePost,
-                              isFav: getFavouritePostsProvider.value
-                                  !.where((element) =>
+                              isFav: getFavouritePostsProvider.value!
+                                  .where((element) =>
                                       element.id == content[index].id)
                                   .isNotEmpty,
                             );
