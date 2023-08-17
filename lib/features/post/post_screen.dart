@@ -1,9 +1,10 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:riverpod_testing/core/theme/theme_config.dart';
 import 'package:riverpod_testing/features/post/provider/post_provider.dart';
-import 'package:riverpod_testing/features/post/provider/post_refresh_controller_provider.dart';
 import 'package:riverpod_testing/features/post/provider/post_scroll_controller_provider.dart';
 import 'package:riverpod_testing/features/post/widgets/error_handling_widget.dart';
 import 'package:riverpod_testing/widget/common/common_app_bar.dart';
@@ -35,7 +36,7 @@ class PostScreen extends BaseView {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    final refreshController = ref.watch(postRefreshControllerProvider);
+    final refreshController = RefreshController();
     final scrollController = ref.watch(postScrollControllerProvider);
     final postProvider = ref.watch(postNotifierProvider);
 
@@ -63,43 +64,38 @@ class PostScreen extends BaseView {
           },
         ),
         Expanded(
-          child: Consumer(
-            builder: (context, ref, _) {
-              return SmartRefresher(
-                controller: refreshController,
-                onRefresh: () =>
-                    ref.read(postNotifierProvider.notifier).getPostList(),
-                child: postProvider.maybeWhen(
-                  success: (content) => CustomScrollView(
-                    controller: scrollController,
-                    slivers: [
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            return PostItem(
-                              content[index],
-                              ref
-                                  .read(postNotifierProvider.notifier)
-                                  .addFavouritePost,
-                              isFav: getFavouritePostsProvider.value
-                                  !.where((element) =>
-                                      element.id == content[index].id)
-                                  .isNotEmpty,
-                            );
-                          },
-                          childCount:
-                              content.length, // Number of items in the list
-                        ),
-                      ),
-                    ],
+          child: SmartRefresher(
+            controller: refreshController,
+            onRefresh: () =>
+                ref.read(postNotifierProvider.notifier).getPostList(),
+            child: postProvider.maybeWhen(
+              success: (content) => CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return PostItem(
+                          content[index],
+                          ref
+                              .read(postNotifierProvider.notifier)
+                              .addFavouritePost,
+                          isFav: getFavouritePostsProvider.value!
+                              .where(
+                                  (element) => element.id == content[index].id)
+                              .isNotEmpty,
+                        );
+                      },
+                      childCount: content.length, // Number of items in the list
+                    ),
                   ),
-                  error: (e) => ErrorHandlingWidget(exception: e),
-                  orElse: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              );
-            },
+                ],
+              ),
+              error: (e) => ErrorHandlingWidget(exception: e),
+              orElse: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
           ),
         ),
       ],

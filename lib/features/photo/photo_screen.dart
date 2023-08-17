@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:riverpod_testing/features/photo/provider/photo_refresh_controller_provider.dart';
 import 'package:riverpod_testing/features/photo/provider/photo_scroll_controller_provider.dart';
 
 import '../../core/base/base_view.dart';
@@ -21,7 +20,8 @@ class PhotoScreen extends BaseView {
 
   @override
   Widget body(BuildContext context, WidgetRef ref) {
-    final refreshController = ref.watch(photoRefreshControllerProvider);
+    final refreshController = RefreshController();
+    // final refreshController = ref.watch(photoRefreshControllerProvider);
     final scrollController = ref.watch(photoScrollControllerProvider);
     final photoProvider = ref.watch(photoNotifierProvider);
     return Consumer(
