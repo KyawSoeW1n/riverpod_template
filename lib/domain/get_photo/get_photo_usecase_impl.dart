@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/data_source/network/photo/photo_remote_datasource_impl.dart';
 
@@ -9,9 +11,9 @@ class GetPhotoUseCaseImpl extends GetPhotoUseCase {
   GetPhotoUseCaseImpl(this._photoRemoteDataSourceImpl);
 
   @override
-  Future<List<String>?> getPhotoList() async {
+  Future<List<String>?> getPhotoList(int pageNo) async {
     try {
-      return await _photoRemoteDataSourceImpl.value?.getPhotoList();
+      return await _photoRemoteDataSourceImpl.value?.getPhotoList(pageNo);
     } catch (e) {
       rethrow;
     }

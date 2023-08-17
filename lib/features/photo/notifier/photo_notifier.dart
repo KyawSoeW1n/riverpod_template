@@ -14,6 +14,7 @@ final photoNotifierProvider =
 
 class PhotoNotifier extends StateNotifier<State<List<String>>> {
   final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
+  int pageNo = 1;
 
   PhotoNotifier(
     this._getPhotoUseCaseImpl,
@@ -23,22 +24,20 @@ class PhotoNotifier extends StateNotifier<State<List<String>>> {
 
   Future<void> getPhotoList(
       {RefreshController? refreshController, forceRefresh = false}) async {
-    if(forceRefresh){
+    if (forceRefresh) {
       state.data?.clear();
     }
-    if (state.data == null) {
-      state = const State.loading();
-    }
-    final photoList = await _getPhotoUseCaseImpl.getPhotoList();
+    final photoList = await _getPhotoUseCaseImpl.getPhotoList(pageNo);
     if (photoList != null) {
       if (state.data != null) {
+        pageNo++;
         state.data!.addAll(photoList);
-
-        // state = State.success(data);
         state = State.success(state.data!);
       } else {
         state = State.success(photoList);
       }
+    } else {
+      state = State.error(Exception("GG"));
     }
     refreshController?.resetRefreshController();
   }

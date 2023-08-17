@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_testing/app_constants/api_routes.dart';
 import 'package:riverpod_testing/data_source/network/photo/photo_remote_datasource.dart';
@@ -18,13 +20,22 @@ class PhotoRemoteDataSourceImpl extends BaseRemoteSource
   );
 
   @override
-  Future<List<String>> getPhotoList() async {
+  Future<List<String>> getPhotoList(int pageNo) async {
     try {
-      const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
-      return callApiWithErrorParser(() => dioClient.get(endpoint))
-          .then((response) {
-        return _photoMapper.mapFromResponse(response.data);
-      });
+      var endpoint = "";
+
+      log("GGWP $pageNo");
+      if (pageNo > 1) {
+        endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}eeee";
+      } else {
+        endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
+      }
+
+      return callApiWithErrorParser(() => dioClient.get(endpoint)).then(
+        (response) {
+          return _photoMapper.mapFromResponse(response.data);
+        },
+      );
     } catch (e) {
       rethrow;
     }
