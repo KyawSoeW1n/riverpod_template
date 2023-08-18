@@ -10,7 +10,7 @@ import '../../../domain/change_post_status/change_post_status_usecase_impl.dart'
 import '../../../domain/get_posts/get_posts_usecase_impl.dart';
 
 final postNotifierProvider =
-    StateNotifierProvider<PostNotifier, State<List<PostVO>>>((ref) {
+    StateNotifierProvider.autoDispose<PostNotifier, State<List<PostVO>>>((ref) {
   return PostNotifier(
     ref.read(getPostUseCaseImpl),
     ref.read(changePostStatusUseCaseImpl),

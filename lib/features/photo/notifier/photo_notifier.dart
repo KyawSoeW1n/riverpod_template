@@ -8,7 +8,8 @@ import '../../../core/state.dart';
 import '../../../domain/get_photo/get_photo_usecase_impl.dart';
 
 final photoNotifierProvider =
-    StateNotifierProvider<PhotoNotifier, State<List<String>>>((ref) {
+    StateNotifierProvider.autoDispose<PhotoNotifier, State<List<String>>>(
+        (ref) {
   return PhotoNotifier(
     ref.watch(getPhotoUseCaseImpl),
   );
