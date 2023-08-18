@@ -1,5 +1,5 @@
-import '../../../data_model/vo/post_vo.dart';
+import '../../../data_model/cache/favourite_post.dart';
 
 abstract class PostsRemoteDataSource {
-  Future<List<PostVO>> getPostList();
+  Future<List<CachePost>> getPostList();
 }

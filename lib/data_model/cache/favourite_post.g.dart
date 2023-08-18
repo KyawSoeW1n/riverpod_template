@@ -6,30 +6,33 @@ part of 'favourite_post.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FavouritePostAdapter extends TypeAdapter<FavouritePost> {
+class CachePostAdapter extends TypeAdapter<CachePost> {
   @override
   final int typeId = 1;
 
   @override
-  FavouritePost read(BinaryReader reader) {
+  CachePost read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FavouritePost(
+    return CachePost(
       fields[0] as int,
       fields[1] as String,
+      fields[2] as bool,
     );
   }
 
   @override
-  void write(BinaryWriter writer, FavouritePost obj) {
+  void write(BinaryWriter writer, CachePost obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.title);
+      ..write(obj.title)
+      ..writeByte(2)
+      ..write(obj.isFavourite);
   }
 
   @override
@@ -38,7 +41,7 @@ class FavouritePostAdapter extends TypeAdapter<FavouritePost> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FavouritePostAdapter &&
+      other is CachePostAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

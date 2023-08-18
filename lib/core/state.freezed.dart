@@ -20,16 +20,15 @@ mixin _$State<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(T data) success,
+    required TResult Function(T? data) success,
     required TResult Function(Exception exception) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
-    TResult? Function(T data)? success,
+    TResult? Function(T? data)? success,
     TResult? Function(Exception exception)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,12 +36,11 @@ mixin _$State<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(T data)? success,
+    TResult Function(T? data)? success,
     TResult Function(Exception exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_init<T> value) init,
@@ -51,7 +49,6 @@ mixin _$State<T> {
     required TResult Function(_error<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_init<T> value)? init,
@@ -82,9 +79,9 @@ class _$StateCopyWithImpl<T, $Res, $Val extends State<T>>
     implements $StateCopyWith<T, $Res> {
   _$StateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -126,7 +123,7 @@ class _$_init<T> extends _init<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(T data) success,
+    required TResult Function(T? data) success,
     required TResult Function(Exception exception) error,
   }) {
     return init();
@@ -137,7 +134,7 @@ class _$_init<T> extends _init<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
-    TResult? Function(T data)? success,
+    TResult? Function(T? data)? success,
     TResult? Function(Exception exception)? error,
   }) {
     return init?.call();
@@ -148,7 +145,7 @@ class _$_init<T> extends _init<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(T data)? success,
+    TResult Function(T? data)? success,
     TResult Function(Exception exception)? error,
     required TResult orElse(),
   }) {
@@ -241,7 +238,7 @@ class _$_loading<T> extends _loading<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(T data) success,
+    required TResult Function(T? data) success,
     required TResult Function(Exception exception) error,
   }) {
     return loading();
@@ -252,7 +249,7 @@ class _$_loading<T> extends _loading<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
-    TResult? Function(T data)? success,
+    TResult? Function(T? data)? success,
     TResult? Function(Exception exception)? error,
   }) {
     return loading?.call();
@@ -263,7 +260,7 @@ class _$_loading<T> extends _loading<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(T data)? success,
+    TResult Function(T? data)? success,
     TResult Function(Exception exception)? error,
     required TResult orElse(),
   }) {
@@ -322,7 +319,7 @@ abstract class _$$_successCopyWith<T, $Res> {
           _$_success<T> value, $Res Function(_$_success<T>) then) =
       __$$_successCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({T data});
+  $Res call({T? data});
 }
 
 /// @nodoc
@@ -342,7 +339,7 @@ class __$$_successCopyWithImpl<T, $Res>
       freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as T,
+              as T?,
     ));
   }
 }
@@ -353,7 +350,7 @@ class _$_success<T> extends _success<T> {
   const _$_success(this.data) : super._();
 
   @override
-  final T data;
+  final T? data;
 
   @override
   String toString() {
@@ -383,7 +380,7 @@ class _$_success<T> extends _success<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(T data) success,
+    required TResult Function(T? data) success,
     required TResult Function(Exception exception) error,
   }) {
     return success(data);
@@ -394,7 +391,7 @@ class _$_success<T> extends _success<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
-    TResult? Function(T data)? success,
+    TResult? Function(T? data)? success,
     TResult? Function(Exception exception)? error,
   }) {
     return success?.call(data);
@@ -405,7 +402,7 @@ class _$_success<T> extends _success<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(T data)? success,
+    TResult Function(T? data)? success,
     TResult Function(Exception exception)? error,
     required TResult orElse(),
   }) {
@@ -454,10 +451,10 @@ class _$_success<T> extends _success<T> {
 }
 
 abstract class _success<T> extends State<T> {
-  const factory _success(final T data) = _$_success<T>;
+  const factory _success(final T? data) = _$_success<T>;
   const _success._() : super._();
 
-  T get data;
+  T? get data;
   @JsonKey(ignore: true)
   _$$_successCopyWith<T, _$_success<T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -529,7 +526,7 @@ class _$_error<T> extends _error<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(T data) success,
+    required TResult Function(T? data) success,
     required TResult Function(Exception exception) error,
   }) {
     return error(exception);
@@ -540,7 +537,7 @@ class _$_error<T> extends _error<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loading,
-    TResult? Function(T data)? success,
+    TResult? Function(T? data)? success,
     TResult? Function(Exception exception)? error,
   }) {
     return error?.call(exception);
@@ -551,7 +548,7 @@ class _$_error<T> extends _error<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(T data)? success,
+    TResult Function(T? data)? success,
     TResult Function(Exception exception)? error,
     required TResult orElse(),
   }) {

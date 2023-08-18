@@ -13,10 +13,10 @@ import 'data_source/local/app_database.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(FavouritePostAdapter());
+  Hive.registerAdapter(CachePostAdapter());
   final dbService = DatabaseService();
   await dbService.initTheme();
-  await dbService.initFavouriteBox();
+  await dbService.initPostBox();
   runApp(
     ProviderScope(
       overrides: [
