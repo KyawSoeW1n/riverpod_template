@@ -3,20 +3,20 @@ import 'package:riverpod_testing/data_source/network/photo/photo_remote_datasour
 
 import 'get_photo_usecase.dart';
 
+final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
+    (ref) => GetPhotoUseCaseImpl(ref.watch(photoRemoteDataSourceImpl)));
+
 class GetPhotoUseCaseImpl extends GetPhotoUseCase {
   final AsyncValue<PhotoRemoteDataSourceImpl> _photoRemoteDataSourceImpl;
 
   GetPhotoUseCaseImpl(this._photoRemoteDataSourceImpl);
 
   @override
-  Future<List<String>?> getPhotoList() async {
+  Future<List<String>?> getPhotoList(int pageNo) async {
     try {
-      return await _photoRemoteDataSourceImpl.value?.getPhotoList();
+      return await _photoRemoteDataSourceImpl.value?.getPhotoList(pageNo);
     } catch (e) {
       rethrow;
     }
   }
 }
-
-final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
-    (ref) => GetPhotoUseCaseImpl(ref.watch(photoRemoteDataSourceImpl)));

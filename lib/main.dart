@@ -41,7 +41,7 @@ class MyApp extends ConsumerWidget {
     ///User Theme Animation
     return ThemeProvider(
       initTheme: initTheme,
-      duration: const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 500),
       builder: (_, myTheme) {
         return MaterialApp.router(
           title: 'Flutter Demo',

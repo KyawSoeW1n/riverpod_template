@@ -1,4 +1,3 @@
-
 import 'base_exception.dart';
 
 class AppException extends BaseException {

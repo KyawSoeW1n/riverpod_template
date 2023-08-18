@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:riverpod_testing/core/network/exception/not_found_exception.dart';
 import 'package:riverpod_testing/features/photo/provider/photo_scroll_controller_provider.dart';
 
 import '../../core/base/base_view.dart';
 import '../../widget/common/common_app_bar.dart';
+import '../post/widgets/error_handling_widget.dart';
 import 'notifier/photo_notifier.dart';
 
 class PhotoScreen extends BaseView {
@@ -42,6 +44,9 @@ class PhotoScreen extends BaseView {
             orElse: () {
               return const SizedBox();
             },
+            error: (e) => ErrorHandlingWidget(
+              exception: NotFoundException("Not Found", "NOT FOUND"),
+            ),
             success: (content) => CustomScrollView(
               controller: scrollController,
               slivers: [

@@ -11,11 +11,12 @@ import 'exception/base_exception.dart';
 abstract class BaseRemoteSource {
   Dio get dioClient => DioProvider.dioWithHeaderToken;
 
-  Future<Response<T>> callApiWithErrorParser<T>(Future<Response<T>>  Function() apiProvider) async {
+  Future<Response<T>> callApiWithErrorParser<T>(
+      Future<Response<T>> Function() apiProvider) async {
     bool isNetworkAvailable = await NetworkUtil.isNetworkAvailable();
-      if (isNetworkAvailable == false) {
-        throw NetworkException( "No Internet Connection");
-      }
+    if (isNetworkAvailable == false) {
+      throw NetworkException("No Internet Connection");
+    }
 
     try {
       Response<T> response = await apiProvider();

@@ -8,9 +8,8 @@ import '../../../core/network/base_remote_datasource.dart';
 import '../../../data_model/vo/post_vo.dart';
 import '../../../features/post/provider/post_provider.dart';
 
-
 final postRemoteDataSourceImpl = Provider<PostRemoteDataSourceImpl>(
-        (ref) => PostRemoteDataSourceImpl(ref.watch(postMapper)));
+    (ref) => PostRemoteDataSourceImpl(ref.watch(postMapper)));
 
 class PostRemoteDataSourceImpl extends BaseRemoteSource
     implements PostsRemoteDataSource {
