@@ -12,7 +12,6 @@ abstract class BaseView<T> extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
       key: globalKey,
       appBar: appBar(context),
       floatingActionButton: floatingActionButton(),

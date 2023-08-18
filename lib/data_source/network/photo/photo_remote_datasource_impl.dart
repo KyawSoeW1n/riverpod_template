@@ -24,11 +24,13 @@ class PhotoRemoteDataSourceImpl extends BaseRemoteSource
     try {
       var endpoint = "";
       log(">>> $pageNo");
-      if (pageNo > 1) {
-        endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}eeee";
-      } else {
-        endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
-      }
+      // if (pageNo > 1) {
+      //   endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}eeee";
+      // } else {
+      //   endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
+      // }
+
+      endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
       return callApiWithErrorParser(() => dioClient.get(endpoint)).then(
         (response) {
           return _photoMapper.mapFromResponse(response.data);

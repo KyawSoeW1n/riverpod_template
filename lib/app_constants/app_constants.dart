@@ -1,3 +1,3 @@
-class AppConstants{
-  static const  baseUrl = "https://jsonplaceholder.typicode.com/";
+class AppConstants {
+  static const baseUrl = "https://jsonplaceholder.typicode.com/";
 }

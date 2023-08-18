@@ -29,6 +29,7 @@ class PhotoNotifier extends StateNotifier<State<List<String>>> {
     if (forceRefresh) {
       state.data?.clear();
     }
+
     try {
       final photoList = await _getPhotoUseCaseImpl.getPhotoList(pageNo);
       if (photoList != null) {

@@ -12,7 +12,6 @@ class PostItemResponse with _$PostItemResponse {
     required int id,
   }) = _PostItemResponse;
 
-  factory PostItemResponse.fromJson(Map<String, Object?> json)
-  => _$PostItemResponseFromJson(json);
+  factory PostItemResponse.fromJson(Map<String, Object?> json) =>
+      _$PostItemResponseFromJson(json);
 }
-

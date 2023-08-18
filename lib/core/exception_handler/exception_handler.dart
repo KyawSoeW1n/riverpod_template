@@ -9,7 +9,8 @@ import 'package:riverpod_testing/core/network/exception/service_unavailable_exce
 import 'package:riverpod_testing/core/network/exception/timeout_exception.dart';
 import 'package:riverpod_testing/core/network/exception/unauthorize_exception.dart';
 
-extension ExceptionExtension<T> on Object{ // Object may be BaseException or AsyncValue<> state
+extension ExceptionExtension<T> on Object {
+  // Object may be BaseException or AsyncValue<> state
   void handleSpecificException({
     Function(String? message)? onNetworkException,
     Function(String? message)? onNotFoundException,
@@ -21,8 +22,8 @@ extension ExceptionExtension<T> on Object{ // Object may be BaseException or Asy
     Function(String? message)? onAppException,
     Function(String? message)? onCommonException,
   }) {
-    Object? errorException =  this;
-    if(this is AsyncError){
+    Object? errorException = this;
+    if (this is AsyncError) {
       errorException = (this as AsyncError).error;
     }
     if (errorException is NetworkException) {
@@ -37,12 +38,12 @@ extension ExceptionExtension<T> on Object{ // Object may be BaseException or Asy
 
     if (errorException is ServiceUnavailableException &&
         onServiceUnavailableException != null) {
-      onServiceUnavailableException(
-          (errorException).message);
+      onServiceUnavailableException((errorException).message);
       return;
     }
 
-    if (errorException is UnauthorizedException && onUnauthorizedException != null) {
+    if (errorException is UnauthorizedException &&
+        onUnauthorizedException != null) {
       onUnauthorizedException((errorException).message);
       return;
     }
@@ -52,7 +53,8 @@ extension ExceptionExtension<T> on Object{ // Object may be BaseException or Asy
       return;
     }
 
-    if (errorException is JsonFormatException && onJsonFormatException != null) {
+    if (errorException is JsonFormatException &&
+        onJsonFormatException != null) {
       onJsonFormatException((errorException).message);
       return;
     }

@@ -9,7 +9,6 @@ import '../notifier/post_notifier.dart';
 
 final postMapper = Provider<PostMapper>((ref) => PostMapper());
 
-
 final postNotifierProvider =
     StateNotifierProvider<PostNotifier, State<List<PostVO>>>((ref) {
   return PostNotifier(
@@ -17,5 +16,3 @@ final postNotifierProvider =
     ref.read(addFavouritePostUseCaseImpl),
   );
 });
-
-

@@ -52,7 +52,8 @@ Exception _parseDioErrorResponse(DioError dioError) {
     case HttpStatus.serviceUnavailable:
       return ServiceUnavailableException("Service Temporarily Unavailable");
     case HttpStatus.notFound:
-      return NotFoundException(serverMessage ?? "Request URL Not Found", "Not Found");
+      return NotFoundException(
+          serverMessage ?? "Request URL Not Found", "Not Found");
     default:
       return ApiException(
         httpCode: statusCode,
