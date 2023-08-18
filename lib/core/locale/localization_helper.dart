@@ -33,9 +33,13 @@ class LocalizationHelper {
     return _localizedStrings[key] ?? "";
   }
 
+  String get noData => _translate('noData');
+
   String get favourites => _translate('favourites');
 
   String get darkMode => _translate('darkMode');
+
+  String get favouritePostCount => _translate('favouritePostCount');
 }
 
 class _AppLocalizationsDelegate

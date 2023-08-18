@@ -2,26 +2,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/data_source/local/favourite_post/favourite_post_local_datasource_impl.dart';
 
 import '../../data_source/network/posts/post_remote_datasource_impl.dart';
-import 'get_posts_usecase.dart';
+import 'fetch_posts_usecase.dart';
 
-final getPostUseCaseImpl = Provider<GetPostsUseCaseImpl>(
-  (ref) => GetPostsUseCaseImpl(
+final fetchPostUseCaseImpl = Provider.autoDispose<FetchPostsUseCaseImpl>(
+  (ref) => FetchPostsUseCaseImpl(
     ref.watch(postRemoteDataSourceImpl),
     ref.watch(postLocalDataSourceImpl),
   ),
 );
 
-class GetPostsUseCaseImpl extends GetPostsUseCase {
+class FetchPostsUseCaseImpl extends FetchPostsUseCase {
   final PostRemoteDataSourceImpl _postRemoteDataSourceImpl;
   final PostLocalDataSourceImpl _postLocalDataSourceImpl;
 
-  GetPostsUseCaseImpl(
+  FetchPostsUseCaseImpl(
     this._postRemoteDataSourceImpl,
     this._postLocalDataSourceImpl,
   );
 
   @override
-  Future<void> getPostList() async {
+  Future<void> fetchPostList() async {
     try {
       final postList = await _postRemoteDataSourceImpl.getPostList();
       _postLocalDataSourceImpl.insertPostList(postList);

@@ -7,7 +7,7 @@ import 'locale_notifier.dart';
 
 final localeProvider = StateNotifierProvider<LocaleNotifier, Locale>((ref) {
   return LocaleNotifier(
-    ref.watch(changeLanguageUseCaseImpl),
-    ref.watch(getLanguageUseCaseImpl),
+    ref.read(changeLanguageUseCaseImpl),
+    ref.read(getLanguageUseCaseImpl),
   );
 });

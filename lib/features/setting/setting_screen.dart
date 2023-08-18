@@ -18,7 +18,6 @@ class SettingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mode = ref.watch(themeController).theme;
     final locale = ref.watch(localeProvider);
     return ThemeSwitchingArea(
       child: Scaffold(

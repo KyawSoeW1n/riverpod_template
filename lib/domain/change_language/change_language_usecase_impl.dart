@@ -4,7 +4,7 @@ import '../../core/locale/support_locale.dart';
 import '../../data_source/local/app_database.dart';
 import 'change_language_usecase.dart';
 
-final changeLanguageUseCaseImpl = Provider<ChangeLanguageUseCaseImpl>(
+final changeLanguageUseCaseImpl = Provider.autoDispose<ChangeLanguageUseCaseImpl>(
     (ref) => ChangeLanguageUseCaseImpl(ref.read(databaseService)));
 
 class ChangeLanguageUseCaseImpl extends ChangeLanguageUseCase {
