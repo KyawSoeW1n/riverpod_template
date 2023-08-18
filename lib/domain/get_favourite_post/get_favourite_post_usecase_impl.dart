@@ -8,12 +8,12 @@ final getFavouritePostUseCaseImpl = Provider<GetFavouritePostUseCaseImpl>(
     (ref) => GetFavouritePostUseCaseImpl(ref.read(postLocalDataSourceImpl)));
 
 class GetFavouritePostUseCaseImpl extends GetFavouritePostUseCase {
-  final FavouritePostLocalDataSourceImpl _favouritePostLocalDataSourceImpl;
+  final PostLocalDataSourceImpl _favouritePostLocalDataSourceImpl;
 
   GetFavouritePostUseCaseImpl(this._favouritePostLocalDataSourceImpl);
 
   @override
-  Stream<List<FavouritePost>> getFavouritePostsList() {
+  Stream<List<CachePost>> getFavouritePostsList() {
     return _favouritePostLocalDataSourceImpl.getPostList();
   }
 }

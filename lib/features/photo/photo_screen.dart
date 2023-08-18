@@ -50,19 +50,20 @@ class PhotoScreen extends BaseView {
             success: (content) => CustomScrollView(
               controller: scrollController,
               slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return CachedNetworkImage(
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.cover,
-                        imageUrl: content[index],
-                      );
-                    },
-                    childCount: content.length, // Number of items in the list
+                if (content != null)
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return CachedNetworkImage(
+                          height: 300,
+                          width: 300,
+                          fit: BoxFit.cover,
+                          imageUrl: content[index],
+                        );
+                      },
+                      childCount: content.length, // Number of items in the list
+                    ),
                   ),
-                ),
               ],
             ),
           ),

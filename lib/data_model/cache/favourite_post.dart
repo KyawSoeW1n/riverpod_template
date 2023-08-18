@@ -3,15 +3,18 @@ import 'package:hive/hive.dart';
 part 'favourite_post.g.dart';
 
 @HiveType(typeId: 1)
-class FavouritePost {
+class CachePost extends HiveObject {
   @HiveField(0)
   final int id;
 
   @HiveField(1)
   final String title;
+  @HiveField(2)
+  bool isFavourite;
 
-  FavouritePost(
+  CachePost(
     this.id,
     this.title,
+    this.isFavourite,
   );
 }

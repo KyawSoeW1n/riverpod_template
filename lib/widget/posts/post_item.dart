@@ -1,32 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_testing/data_model/vo/post_vo.dart';
+import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
+import 'package:riverpod_testing/widget/common/text_view_widget.dart';
+
+import '../../core/resource/app_dimens.dart';
 
 class PostItem extends StatelessWidget {
-  final PostVO postVO;
+  final CachePost postVO;
   final Function function;
-  final bool isFav;
 
   const PostItem(
     this.postVO,
     this.function, {
-    this.isFav = false,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(postVO.title),
+    return Card(
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppDimens.margin16,
+        vertical: AppDimens.margin8,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          AppDimens.margin4,
         ),
-        IconButton(
-          onPressed: () => function(postVO.id, postVO.title),
-          icon: isFav
-              ? const Icon(Icons.favorite)
-              : const Icon(Icons.favorite_outline),
-        )
-      ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: AppDimens.margin16,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextViewWidget("${postVO.id}"),
+                  TextViewWidget(
+                    postVO.title,
+                    maxLine: 1,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          IconButton(
+            onPressed: () => function(postVO),
+            icon: postVO.isFavourite
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_outline),
+          )
+        ],
+      ),
     );
   }
 }
