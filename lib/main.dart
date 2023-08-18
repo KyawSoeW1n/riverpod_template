@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
@@ -43,7 +42,6 @@ class MyApp extends ConsumerWidget {
         PlatformDispatcher.instance.platformBrightness == Brightness.dark;
     final initTheme = isPlatformDark ? darkTheme : darkTheme;
     // final themMode = ref.watch(themeController);
-    log(">>> ${locale.languageCode}");
 
     ///Use Theme Animation
     return ThemeProvider(

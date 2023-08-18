@@ -37,7 +37,8 @@ class SettingScreen extends ConsumerWidget {
                           padding:
                               const EdgeInsets.only(left: AppDimens.margin16),
                           child: TextViewWidget(
-                              '${LocalizationHelper.of(context)?.darkMode}'),
+                            '${LocalizationHelper.of(context)?.darkMode}',
+                          ),
                         ),
                       ),
                       IconButton(
@@ -61,7 +62,7 @@ class SettingScreen extends ConsumerWidget {
                 children: [
                   const Expanded(
                     flex: 1,
-                    child:  TextViewWidget('Language'),
+                    child: TextViewWidget('Language'),
                   ),
                   Expanded(
                     flex: 2,
@@ -96,45 +97,14 @@ class SettingScreen extends ConsumerWidget {
                   )
                 ],
               ),
-              // child: Row(
-              //   children: [
-              //     Expanded(
-              //       child: ElevatedButton(
-              //         onPressed: () {
-              //           ref
-              //               .read(localeProvider.notifier)
-              //               .changeLanguage(SupportedLocale.en);
-              //         },
-              //         child: TextViewWidget("ENG"),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: AppDimens.margin16,
-              //     ),
-              //     Expanded(
-              //       child: ElevatedButton(
-              //         onPressed: () {
-              //           ref
-              //               .read(localeProvider.notifier)
-              //               .changeLanguage(SupportedLocale.mm);
-              //         },
-              //         child: TextViewWidget("MM"),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ),
-            // SwitchListTile.adaptive(
-            //   title: const Text("Dark Mode"),
-            //   value: (mode == 'dark') ? true : false,
-            //   onChanged: (value) =>
-            //       ref.watch(themeController.notifier).toggle(value),
-            // ),
             InkWell(
               onTap: () => context.push("/${AppRoutes.favourite}"),
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text("Favourites"),
+              child: Padding(
+                padding: const EdgeInsets.all(AppDimens.margin16),
+                child: TextViewWidget(
+                  '${LocalizationHelper.of(context)?.favourites}',
+                ),
               ),
             )
           ],

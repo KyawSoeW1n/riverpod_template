@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PostVO {
   bool get isFavourite => throw _privateConstructorUsedError;
+
   String get title => throw _privateConstructorUsedError;
+
   int get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,6 +30,7 @@ mixin _$PostVO {
 abstract class $PostVOCopyWith<$Res> {
   factory $PostVOCopyWith(PostVO value, $Res Function(PostVO) then) =
       _$PostVOCopyWithImpl<$Res, PostVO>;
+
   @useResult
   $Res call({bool isFavourite, String title, int id});
 }
@@ -39,6 +42,7 @@ class _$PostVOCopyWithImpl<$Res, $Val extends PostVO>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -70,6 +74,7 @@ class _$PostVOCopyWithImpl<$Res, $Val extends PostVO>
 abstract class _$$_PostVOCopyWith<$Res> implements $PostVOCopyWith<$Res> {
   factory _$$_PostVOCopyWith(_$_PostVO value, $Res Function(_$_PostVO) then) =
       __$$_PostVOCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({bool isFavourite, String title, int id});
@@ -153,10 +158,13 @@ abstract class _PostVO implements PostVO {
 
   @override
   bool get isFavourite;
+
   @override
   String get title;
+
   @override
   int get id;
+
   @override
   @JsonKey(ignore: true)
   _$$_PostVOCopyWith<_$_PostVO> get copyWith =>

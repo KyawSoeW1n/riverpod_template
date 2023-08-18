@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +33,7 @@ class LocalizationHelper {
     return _localizedStrings[key] ?? "";
   }
 
-  String get appName => _translate('appName');
+  String get favourites => _translate('favourites');
 
   String get darkMode => _translate('darkMode');
 }
