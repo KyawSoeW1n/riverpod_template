@@ -9,8 +9,7 @@ import 'package:riverpod_testing/widget/common/text_view_widget.dart';
 
 import '../../app_constants/app_routes.dart';
 import '../../core/locale/localization_helper.dart';
-import '../../core/theme/theme_config.dart';
-import '../../core/theme_provider.dart';
+import '../../core/resource/theme/theme_config.dart';
 import '../../widget/common/common_app_bar.dart';
 
 class SettingScreen extends ConsumerWidget {
