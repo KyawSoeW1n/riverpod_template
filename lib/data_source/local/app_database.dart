@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:riverpod_testing/app_constants/db_constants.dart';
 import 'package:riverpod_testing/core/enum_collection/theme_type.dart';
+import 'package:riverpod_testing/core/locale/support_locale.dart';
 import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -22,6 +25,7 @@ final favouritePostListStream = StreamProvider.autoDispose((ref) async* {
 class DatabaseService {
   late final Box<String> _themeBox;
   late final Box<CachePost> _postBox;
+  late final Box<String> _languageBox;
 
   String get savedTheme => _themeBox.values.first;
 
@@ -35,6 +39,18 @@ class DatabaseService {
     }
   }
 
+  Future<void> initLanguageBox() async {
+    await Hive.openBox<String>(DBConstants.languageBox)
+        .then((value) => _languageBox = value);
+
+    //first time loading
+    if (_languageBox.values.isEmpty) {
+      _languageBox.add(
+        SupportedLocale.en.languageCode,
+      );
+    }
+  }
+
   Future<void> initPostBox() async {
     await Hive.openBox<CachePost>(DBConstants.postBox)
         .then((value) => _postBox = value);
@@ -42,6 +58,9 @@ class DatabaseService {
 
   Future<void> toggleSaveTheme(String mode) async =>
       await _themeBox.put(0, mode);
+
+  Future<void> saveLanguage(SupportedLocale locale) async =>
+      await _languageBox.put(0, locale.languageCode);
 
   Future<void> changePostStatus(CachePost cachePost) async {
     cachePost.isFavourite = !cachePost.isFavourite;
@@ -89,6 +108,10 @@ class DatabaseService {
 
   List<CachePost> getPostList() {
     return List<CachePost>.from(_postBox.values);
+  }
+
+  Locale getLanguage() {
+    return Locale(_languageBox.getAt(0) ?? SupportedLocale.en.languageCode);
   }
 
   List<CachePost> getFavouritePostList() {

@@ -6,9 +6,8 @@ import '../../../core/network/base_remote_datasource.dart';
 import '../app_database.dart';
 import 'favourite_post_local_datasource.dart';
 
-final postLocalDataSourceImpl = Provider<PostLocalDataSourceImpl>(
-    (ref) => PostLocalDataSourceImpl(
-        ref.read(postMapper), ref.read(databaseService)));
+final postLocalDataSourceImpl = Provider<PostLocalDataSourceImpl>((ref) =>
+    PostLocalDataSourceImpl(ref.read(postMapper), ref.read(databaseService)));
 
 class PostLocalDataSourceImpl extends BaseRemoteSource
     implements FavouritePostLocalDataSource {
