@@ -26,6 +26,7 @@ class DatabaseService {
   late final Box<String> _themeBox;
   late final Box<CachePost> _postBox;
   late final Box<String> _languageBox;
+  late final Box<String> _userDataBox;
 
   String get savedTheme => _themeBox.values.first;
 
@@ -33,17 +34,20 @@ class DatabaseService {
     await Hive.openBox<String>(DBConstants.themeBox)
         .then((value) => _themeBox = value);
 
-    //first time loading
     if (_themeBox.values.isEmpty) {
       _themeBox.add(ThemeType.light.name);
     }
+  }
+
+  Future<void> initUserDataBox() async {
+    await Hive.openBox<String>(DBConstants.userDataBox)
+        .then((value) => _userDataBox = value);
   }
 
   Future<void> initLanguageBox() async {
     await Hive.openBox<String>(DBConstants.languageBox)
         .then((value) => _languageBox = value);
 
-    //first time loading
     if (_languageBox.values.isEmpty) {
       _languageBox.add(
         SupportedLocale.en.languageCode,
@@ -61,6 +65,11 @@ class DatabaseService {
 
   Future<void> saveLanguage(SupportedLocale locale) async =>
       await _languageBox.put(0, locale.languageCode);
+
+  Future<void> saveUserDataBox(String userData) async =>
+      await _userDataBox.put(0, userData);
+
+  String getUserBox() => _userDataBox.getAt(0) ?? "";
 
   Future<void> changePostStatus(CachePost cachePost) async {
     cachePost.isFavourite = !cachePost.isFavourite;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-abstract class BaseView<T> extends ConsumerWidget {
+abstract class BaseView<T> extends HookConsumerWidget {
   BaseView({Key? key}) : super(key: key);
   final GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 

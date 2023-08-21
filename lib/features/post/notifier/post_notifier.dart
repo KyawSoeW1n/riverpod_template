@@ -1,4 +1,4 @@
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/core/network/exception/base_exception.dart';
 import 'package:riverpod_testing/core/utils/app_utils.dart';
 import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
