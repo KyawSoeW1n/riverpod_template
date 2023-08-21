@@ -40,9 +40,8 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   #Riverpod
-  riverpod: ^2.3.2
   flutter_riverpod: ^2.3.2
-#  hooks_riverpod: ^2.3.2
+  hooks_riverpod: ^2.3.8
   connectivity_plus: ^2.3.9
 
   #Navigation

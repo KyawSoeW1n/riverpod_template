@@ -22,6 +22,7 @@ void main() async {
   await dbService.initTheme();
   await dbService.initPostBox();
   await dbService.initLanguageBox();
+  await dbService.initUserDataBox();
   runApp(
     ProviderScope(
       overrides: [
