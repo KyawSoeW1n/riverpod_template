@@ -3,4 +3,5 @@ class AppRoutes {
   static const setting = "setting";
   static const photo = "photo";
   static const favourite = "favourite";
+  static const user = "user";
 }
