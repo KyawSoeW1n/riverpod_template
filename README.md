@@ -1,16 +1,24 @@
-# riverpod_testing
+# riverpod_template
 
-Riverpod Testing
+Riverpod Template
+This project using clean architecture for flutter application.
+You can change response data by using mapper layer. ( You can ignore if you don't wanna change response)
 
-## Getting Started
+## Plugin
+- [StateManagement](https://pub.dev/packages/hooks_riverpod) - State Management
+- [Dio](https://pub.dev/packages/dio) - Fetching Network Data
+- [CacheNetworkImage](https://pub.dev/packages/cached_network_image) - Cache Image
+- [AnimateThemeSwitcher](https://pub.dev/packages/animated_theme_switcher) - Change theme with animation
+- [Hive](https://pub.dev/packages/hive) - NO SQL Database
+- [GoogleFonts](https://pub.dev/packages/google_fonts) - Multiple Fonts
+- [GoRouter](https://pub.dev/packages/go_router) - Navigation Screen
+- [PrettyDioLogger](https://pub.dev/packages/pretty_dio_logger) - Log For Network Response
+- [Freezed](https://pub.dev/packages/freezed) - For Data Model
 
-This project is a starting point for a Flutter application.
+## Contributer
+PR are welcome for robust base frame, to help our community and rapid production.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+##### Note
+Using Pretty Dio can freeze UI when network response is too long.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
