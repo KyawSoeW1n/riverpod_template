@@ -9,8 +9,7 @@ import 'package:riverpod_testing/widget/common/text_view_widget.dart';
 
 import '../../app_constants/app_routes.dart';
 import '../../core/locale/localization_helper.dart';
-import '../../core/theme/theme_config.dart';
-import '../../core/theme_provider.dart';
+import '../../core/resource/theme/theme_config.dart';
 import '../../widget/common/common_app_bar.dart';
 
 class SettingScreen extends ConsumerWidget {
@@ -18,7 +17,6 @@ class SettingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mode = ref.watch(themeController).theme;
     final locale = ref.watch(localeProvider);
     return ThemeSwitchingArea(
       child: Scaffold(
@@ -106,7 +104,16 @@ class SettingScreen extends ConsumerWidget {
                   '${LocalizationHelper.of(context)?.favourites}',
                 ),
               ),
-            )
+            ),
+            InkWell(
+              onTap: () => context.push("/${AppRoutes.user}"),
+              child: const Padding(
+                padding: EdgeInsets.all(AppDimens.margin16),
+                child: TextViewWidget(
+                  'User',
+                ),
+              ),
+            ),
           ],
         ),
       ),

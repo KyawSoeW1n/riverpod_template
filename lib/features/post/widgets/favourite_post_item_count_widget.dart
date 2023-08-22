@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_testing/core/resource/app_dimens.dart';
 
+import '../../../core/locale/localization_helper.dart';
 import '../../../widget/common/text_view_widget.dart';
 
 class FavouritePostItemCountWidget extends StatelessWidget {
@@ -18,7 +19,9 @@ class FavouritePostItemCountWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const TextViewWidget("Favourite Post Count"),
+          TextViewWidget(
+            '${LocalizationHelper.of(context)?.favouritePostCount}',
+          ),
           TextViewWidget("$count"),
         ],
       ),

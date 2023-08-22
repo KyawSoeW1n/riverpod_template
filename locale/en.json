@@ -1,4 +1,6 @@
 {
   "darkMode": "Dark Mode",
-  "favourites": "Favourites"
+  "favourites": "Favourites",
+  "noData": "No Data",
+  "favouritePostCount" : "Favourite Post Count"
 }

@@ -61,7 +61,7 @@ class BaseErrorHandlingView extends StatelessWidget {
     }
 
     if (errorException is AppException) {
-      return commonErrorView((errorException as ApiException).message);
+      return commonErrorView((errorException as AppException).message);
     }
 
     return commonErrorView((errorException as BaseException).message);

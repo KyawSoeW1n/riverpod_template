@@ -20,9 +20,10 @@ class PostRemoteDataSourceImpl extends BaseRemoteSource
 
   @override
   Future<List<CachePost>> getPostList() async {
+
     try {
       const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getToDoList}";
-      return callApiWithErrorParser(() => dioClient.get(endpoint))
+      return callApiWithErrorParser(() => dioClient.post(endpoint))
           .then((response) {
         return _postMapper.mapFromResponse(response.data);
       });
