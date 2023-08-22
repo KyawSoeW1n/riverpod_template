@@ -16,6 +16,4 @@ class PostMapper implements BaseResponseMapper<List, List<CachePost>> {
             ))
         .toList();
   }
-
-
 }

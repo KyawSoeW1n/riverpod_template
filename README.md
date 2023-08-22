@@ -15,7 +15,7 @@ You can change response data by using mapper layer. ( You can ignore if you don'
 - [PrettyDioLogger](https://pub.dev/packages/pretty_dio_logger) - Log For Network Response
 - [Freezed](https://pub.dev/packages/freezed) - For Data Model
 
-## Contributer
+## Contributor
 PR are welcome for robust base frame, to help our community and rapid production.
 
 

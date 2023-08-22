@@ -13,7 +13,7 @@ class UserNotifier extends StateNotifier<State<String>> {
   UserNotifier(
     this._userUseCaseImpl,
   ) : super(const State.loading()) {
-    getUserData();
+    Future.microtask(() => getUserData());
   }
 
   void getUserData() {

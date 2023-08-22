@@ -27,16 +27,12 @@ class DioProvider {
     if (_instance == null) {
       _instance = Dio(_options);
       _addHeader();
-      if (kDebugMode) {
-        _instance!.interceptors.add(_prettyDioLogger);
-      }
+      addPrettyDioLogger();
       return _instance!;
     } else {
       _addHeader();
       _instance!.interceptors.clear();
-      if (kDebugMode) {
-        _instance!.interceptors.add(_prettyDioLogger);
-      }
+      addPrettyDioLogger();
       return _instance!;
     }
   }
@@ -47,6 +43,12 @@ class DioProvider {
     _addInterceptors();
     _addHeader();
     return _instance!;
+  }
+
+  static addPrettyDioLogger(){
+    if (kDebugMode) {
+      _instance!.interceptors.add(_prettyDioLogger);
+    }
   }
 
   static _addHeader() {
@@ -69,8 +71,6 @@ class DioProvider {
   static _addInterceptors() {
     _instance ??= httpDio;
     _instance!.interceptors.clear();
-    if (kDebugMode) {
-      _instance!.interceptors.add(_prettyDioLogger);
-    }
+    addPrettyDioLogger();
   }
 }
