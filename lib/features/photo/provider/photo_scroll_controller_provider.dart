@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final photoScrollControllerProvider = Provider<ScrollController>((ref) {
+final photoScrollControllerProvider = Provider.autoDispose<ScrollController>((ref) {
   final scrollController = ScrollController();
   ref.onDispose(scrollController.dispose);
   return scrollController;

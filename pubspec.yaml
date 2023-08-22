@@ -40,7 +40,10 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   #Riverpod
+  flutter_riverpod: ^2.3.7
   hooks_riverpod: ^2.3.8
+
+  ##Connectivity
   connectivity_plus: ^2.3.9
 
   #Navigation
@@ -73,12 +76,14 @@ dependencies:
   rxdart: ^0.27.7
 
   #Collection
-  collection : 1.17.2
+  collection: 1.17.1
 
   #Google Font
   google_fonts: ^5.1.0
 
   pull_to_refresh: ^2.0.0
+
+  flutter_flavorizr: ^2.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,7 +98,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
-  freezed: ^2.4.2
+  freezed: ^2.3.4
   json_serializable: ^6.6.2
   hive_generator: ^2.0.0
 
@@ -139,3 +144,36 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+
+  flavors:
+    local:
+      app:
+        name: "Riverpod Local"
+
+      android:
+        applicationId: "com.riverpod.local"
+      ios:
+        bundleId: "com.riverpod.local"
+
+    development:
+      app:
+        name: "Riverpod Dev"
+
+      android:
+        applicationId: "com.riverpod.dev"
+      ios:
+        bundleId: "com.riverpod.dev"
+
+    production:
+      app:
+        name: "Riverpod"
+
+      android:
+        applicationId: "roi.riverpod"
+      ios:
+        bundleId: "com.riverpod"

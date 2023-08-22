@@ -42,6 +42,10 @@ class DatabaseService {
   Future<void> initUserDataBox() async {
     await Hive.openBox<String>(DBConstants.userDataBox)
         .then((value) => _userDataBox = value);
+
+    if (_userDataBox.values.isEmpty) {
+      _userDataBox.add("");
+    }
   }
 
   Future<void> initLanguageBox() async {
