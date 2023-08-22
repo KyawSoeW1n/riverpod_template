@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../data_source/local/app_database.dart';
+import '../../../data_source/local/app_database.dart';
 
 final themeController = ChangeNotifierProvider<ThemeController>((ref) {
   final database = ref.watch(databaseService);

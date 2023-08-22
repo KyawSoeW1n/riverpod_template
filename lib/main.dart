@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:riverpod_testing/core/theme/theme_config.dart';
 import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
 
 import 'app_constants/app_route_configuration.dart';
 import 'core/locale/locale_provider.dart';
 import 'core/locale/localization_helper.dart';
+import 'core/resource/theme/theme_config.dart';
 import 'data_source/local/app_database.dart';
 
 void main() async {

@@ -3,7 +3,7 @@ import 'package:riverpod_testing/data_source/network/photo/photo_remote_datasour
 
 import 'get_photo_usecase.dart';
 
-final getPhotoUseCaseImpl = Provider<GetPhotoUseCaseImpl>(
+final getPhotoUseCaseImpl = Provider.autoDispose<GetPhotoUseCaseImpl>(
     (ref) => GetPhotoUseCaseImpl(ref.watch(photoRemoteDataSourceImpl)));
 
 class GetPhotoUseCaseImpl extends GetPhotoUseCase {

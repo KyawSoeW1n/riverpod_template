@@ -21,17 +21,12 @@ PhotoResponse _$PhotoResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PhotoResponse {
   String get title => throw _privateConstructorUsedError;
-
   String get thumbnailUrl => throw _privateConstructorUsedError;
-
   String get url => throw _privateConstructorUsedError;
-
   int get albumId => throw _privateConstructorUsedError;
-
   int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $PhotoResponseCopyWith<PhotoResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,7 +37,6 @@ abstract class $PhotoResponseCopyWith<$Res> {
   factory $PhotoResponseCopyWith(
           PhotoResponse value, $Res Function(PhotoResponse) then) =
       _$PhotoResponseCopyWithImpl<$Res, PhotoResponse>;
-
   @useResult
   $Res call(
       {String title, String thumbnailUrl, String url, int albumId, int id});
@@ -55,7 +49,6 @@ class _$PhotoResponseCopyWithImpl<$Res, $Val extends PhotoResponse>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -99,7 +92,6 @@ abstract class _$$_PhotoResponseCopyWith<$Res>
   factory _$$_PhotoResponseCopyWith(
           _$_PhotoResponse value, $Res Function(_$_PhotoResponse) then) =
       __$$_PhotoResponseCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -222,19 +214,14 @@ abstract class _PhotoResponse implements PhotoResponse {
 
   @override
   String get title;
-
   @override
   String get thumbnailUrl;
-
   @override
   String get url;
-
   @override
   int get albumId;
-
   @override
   int get id;
-
   @override
   @JsonKey(ignore: true)
   _$$_PhotoResponseCopyWith<_$_PhotoResponse> get copyWith =>

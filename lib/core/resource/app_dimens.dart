@@ -31,7 +31,4 @@ abstract class AppDimens {
 
   ///Specific Dimension
   static const textTitle = textSize18;
-  static const SHOP_ICON_SIZE = 60.0;
-  static const DROPDOWN_HEIGHT = 48.0;
-  static const SPINNER_ICON_SIZE = 30.0;
 }

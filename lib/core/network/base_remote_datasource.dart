@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_testing/core/network/exception/network_exception.dart';
@@ -24,13 +26,12 @@ abstract class BaseRemoteSource {
     } on DioError catch (dioError) {
       Exception exception = handleDioError(dioError);
       if (kDebugMode) {
-        debugPrint(
-            "Throwing error from repository: >>>>>>> $exception : ${(exception as BaseException).message}");
+        log("Throwing error from repository: >>>>>>> $exception : ${(exception as BaseException).message}");
       }
       throw exception;
     } catch (error) {
       if (kDebugMode) {
-        debugPrint("Generic error: >>>>>>> $error");
+        log("Generic error: >>>>>>> $error");
       }
 
       if (error is BaseException) {
