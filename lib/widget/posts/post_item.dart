@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
+import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:riverpod_testing/widget/common/text_view_widget.dart';
 
 import '../../core/resource/app_dimens.dart';

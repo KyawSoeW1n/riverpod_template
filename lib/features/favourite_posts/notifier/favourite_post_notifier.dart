@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
+import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:riverpod_testing/domain/change_post_status/change_post_status_usecase.dart';
 
 import '../../../core/state.dart';

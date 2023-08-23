@@ -1,3 +1,5 @@
+import '../core/config/flavour_manager.dart';
+
 class AppConstants {
-  static const baseUrl = "https://jsonplaceholder.typicode.com/";
+  static String baseUrl = FlavourManager.env!.baseUrl;
 }

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-part 'favourite_post.g.dart';
+part 'cache_post.g.dart';
 
 @HiveType(typeId: 1)
 class CachePost extends HiveObject {

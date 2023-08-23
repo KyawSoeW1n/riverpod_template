@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:riverpod_testing/app_constants/db_constants.dart';
 import 'package:riverpod_testing/core/enum_collection/theme_type.dart';
 import 'package:riverpod_testing/core/locale/support_locale.dart';
-import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
+import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:rxdart/rxdart.dart';
 
 final databaseService = Provider<DatabaseService>((_) => DatabaseService());

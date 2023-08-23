@@ -6,8 +6,9 @@ import 'package:riverpod_testing/mapper/photo_mapper.dart';
 import '../../../app_constants/app_constants.dart';
 import '../../../core/network/base_remote_datasource.dart';
 
-final photoRemoteDataSourceImpl = FutureProvider.autoDispose<PhotoRemoteDataSourceImpl>(
-    (ref) => PhotoRemoteDataSourceImpl(ref.watch(photoMapper)));
+final photoRemoteDataSourceImpl =
+    FutureProvider.autoDispose<PhotoRemoteDataSourceImpl>(
+        (ref) => PhotoRemoteDataSourceImpl(ref.watch(photoMapper)));
 
 class PhotoRemoteDataSourceImpl extends BaseRemoteSource
     implements PhotoRemoteDataSource {
@@ -20,7 +21,7 @@ class PhotoRemoteDataSourceImpl extends BaseRemoteSource
   @override
   Future<List<String>> getPhotoList(int pageNo) async {
     try {
-      const endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
+      final endpoint = "${AppConstants.baseUrl}${ApiRoutes.getPhoto}";
       return callApiWithErrorParser(() => dioClient.get(endpoint)).then(
         (response) {
           return _photoMapper.mapFromResponse(response.data);

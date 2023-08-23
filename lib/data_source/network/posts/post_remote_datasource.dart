@@ -1,4 +1,4 @@
-import '../../../data_model/cache/favourite_post.dart';
+import '../../../data_model/cache/cache_post.dart';
 
 abstract class PostsRemoteDataSource {
   Future<List<CachePost>> getPostList();

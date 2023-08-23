@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_testing/core/resource/app_dimens.dart';
-import 'package:riverpod_testing/data_model/cache/favourite_post.dart';
+import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 
 import '../../../widget/common/text_view_widget.dart';
 
