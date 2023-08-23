@@ -45,7 +45,7 @@ class DioProvider {
     return _instance!;
   }
 
-  static addPrettyDioLogger(){
+  static addPrettyDioLogger() {
     if (kDebugMode) {
       _instance!.interceptors.add(_prettyDioLogger);
     }

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/core/network/exception/base_exception.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
-import 'package:riverpod_testing/domain/change_post_status/change_post_status_usecase.dart';
 import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase_impl.dart';
 
 import '../../../core/state.dart';
@@ -18,17 +17,17 @@ final postNotifierProvider =
 
 class PostNotifier extends StateNotifier<State<List<PostVO>>> {
   final FetchPostsUseCaseImpl _getPostsUseCaseImpl;
-  final ChangePostStatusUseCase _changePostStatusUseCase;
+  final ChangePostStatusUseCaseImpl _changePostStatusUseCaseImpl;
 
   PostNotifier(
     this._getPostsUseCaseImpl,
-    this._changePostStatusUseCase,
+    this._changePostStatusUseCaseImpl,
   ) : super(const State.init()) {
     getPostList();
   }
 
   void changePostStatus(CachePost cachePost) {
-    _changePostStatusUseCase.changePostStatus(cachePost);
+    _changePostStatusUseCaseImpl.changePostStatus(cachePost);
   }
 
   void getPostList() async {

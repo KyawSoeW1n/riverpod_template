@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
-import 'package:riverpod_testing/domain/change_post_status/change_post_status_usecase.dart';
 
 import '../../../core/state.dart';
 import '../../../data_model/vo/post_vo.dart';
@@ -14,13 +13,13 @@ final favouritePostNotifierProvider =
 });
 
 class FavouritePostNotifier extends StateNotifier<State<List<PostVO>>> {
-  final ChangePostStatusUseCase _changePostStatusUseCase;
+  final ChangePostStatusUseCaseImpl _changePostStatusUseCaseImpl;
 
   FavouritePostNotifier(
-    this._changePostStatusUseCase,
+    this._changePostStatusUseCaseImpl,
   ) : super(const State.init());
 
   void changePostStatus(CachePost cachePost) {
-    _changePostStatusUseCase.changePostStatus(cachePost);
+    _changePostStatusUseCaseImpl.changePostStatus(cachePost);
   }
 }
