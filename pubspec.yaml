@@ -83,13 +83,11 @@ dependencies:
 
   pull_to_refresh: ^2.0.0
 
-  flutter_flavorizr: ^2.2.1
-
   google_mobile_ads: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_flavorizr: ^2.2.1
   mocktail: ^0.3.0
   hive_test: ^1.0.1
 
@@ -149,36 +147,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-    ios:
 
-  flavors:
-    local:
-      app:
-        name: "Riverpod Local"
-
-      android:
-        applicationId: "com.riverpod.local"
-      ios:
-        bundleId: "com.riverpod.local"
-
-    development:
-      app:
-        name: "Riverpod Dev"
-
-      android:
-        applicationId: "com.riverpod.dev"
-      ios:
-        bundleId: "com.riverpod.dev"
-
-    production:
-      app:
-        name: "Riverpod"
-
-      android:
-        applicationId: "roi.riverpod"
-      ios:
-        bundleId: "com.riverpod"

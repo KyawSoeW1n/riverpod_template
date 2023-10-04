@@ -1,0 +1,24 @@
+app:
+  android:
+    flavorDimensions: "flavor-type"
+
+flavors:
+  development:
+    app:
+      name: "Riverpod Dev"
+
+    android:
+      applicationId: "com.riverpod.dev"
+    ios:
+      bundleId: "com.riverpod.dev"
+
+  production:
+    app:
+      name: "Riverpod"
+
+    android:
+      applicationId: "roi.riverpod"
+    ios:
+      bundleId: "com.riverpod"
+
+ide: idea
