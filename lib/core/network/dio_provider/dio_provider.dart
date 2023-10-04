@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -18,10 +20,11 @@ class DioProvider {
   );
 
   static final BaseOptions _options = BaseOptions(
-      baseUrl: AppConstants.baseUrl,
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 5),
-      headers: _addHeader());
+    baseUrl: AppConstants.baseUrl,
+    connectTimeout: const Duration(seconds: 30),
+    receiveTimeout: const Duration(seconds: 30),
+    headers: _addHeader(),
+  );
 
   static Dio get httpDio {
     if (_instance == null) {
@@ -62,7 +65,7 @@ class DioProvider {
     //   authToken = user.token;
     // }
 
-    debugPrint("Auth Token is *** $authToken");
+    log("Auth Token is *** $authToken");
     _instance?.options.headers = {
       "Content-Type": Headers.jsonContentType,
     };

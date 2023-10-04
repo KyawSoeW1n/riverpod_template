@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:riverpod_testing/features/post/widgets/cache_post_list_widget.dart';
 import 'package:riverpod_testing/features/post/widgets/error_handling_widget.dart';
@@ -11,6 +12,7 @@ import 'package:riverpod_testing/widget/common/loading_widget.dart';
 import '../../app_constants/app_routes.dart';
 import '../../core/base/base_view.dart';
 import '../../data_source/local/app_database.dart';
+import 'notifier/ads_notifier.dart';
 import 'notifier/post_notifier.dart';
 
 class PostScreen extends BaseView {
@@ -37,6 +39,7 @@ class PostScreen extends BaseView {
   Widget body(BuildContext context, WidgetRef ref) {
     final refreshController = RefreshController();
 
+    final adsProvider = ref.watch(adsNotifierProvider);
     final postProvider = ref.watch(postNotifierProvider);
 
     final postListStreamProvider = ref.watch(postsStreamProvider);
@@ -72,6 +75,22 @@ class PostScreen extends BaseView {
               orElse: () => const SizedBox(),
             ),
           ),
+        ),
+        adsProvider.maybeWhen(
+          loading: () => const LoadingWidget(),
+          success: (data) => data != null
+              ? SizedBox(
+                  width: data.size.width.toDouble(),
+                  height: data.size.height.toDouble(),
+                  child: AdWidget(ad: data),
+                )
+              : const SizedBox(),
+          error: (e) => postListStreamProvider.value != null
+              ? const SizedBox()
+              : Center(
+                  child: ErrorHandlingWidget(exception: e),
+                ),
+          orElse: () => const SizedBox(),
         ),
       ],
     );
