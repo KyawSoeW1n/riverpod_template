@@ -4,6 +4,7 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 
@@ -17,6 +18,7 @@ import 'data_source/local/app_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await FlavourManager().init(Flavor.development);
   await Hive.initFlutter();
   Hive.registerAdapter(CachePostAdapter());

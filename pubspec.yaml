@@ -76,7 +76,7 @@ dependencies:
   rxdart: ^0.27.7
 
   #Collection
-  collection: 1.17.1
+  collection: 1.17.2
 
   #Google Font
   google_fonts: ^5.1.0
@@ -84,6 +84,8 @@ dependencies:
   pull_to_refresh: ^2.0.0
 
   flutter_flavorizr: ^2.2.1
+
+  google_mobile_ads: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
