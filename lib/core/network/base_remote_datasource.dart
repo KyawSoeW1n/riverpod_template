@@ -23,7 +23,7 @@ abstract class BaseRemoteSource {
     try {
       Response<T> response = await apiProvider();
       return response;
-    } on DioError catch (dioError) {
+    } on DioException catch (dioError) {
       Exception exception = handleDioError(dioError);
       if (kDebugMode) {
         log("Throwing error from repository: >>>>>>> $exception : ${(exception as BaseException).message}");

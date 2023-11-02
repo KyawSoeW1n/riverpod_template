@@ -37,24 +37,24 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
 
   #Riverpod
-  flutter_riverpod: ^2.3.7
-  hooks_riverpod: ^2.3.8
+  flutter_riverpod: ^2.4.5
+  hooks_riverpod: ^2.4.5
 
   ##Connectivity
-  connectivity_plus: ^2.3.9
+  connectivity_plus: ^5.0.1
 
   #Navigation
-  go_router: ^7.0.1
+  go_router: ^12.0.1
 
   #Dio
-  dio: ^5.1.1
+  dio: ^5.3.3
   pretty_dio_logger: ^1.1.1
 
   #Image Library
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.0
 
   #Theme Animator
   animated_theme_switcher: ^2.0.8
@@ -67,39 +67,45 @@ dependencies:
   hive_flutter: ^1.1.0
 
   #DataModel
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
   #Toast
-  fluttertoast: ^8.2.1
+  fluttertoast: ^8.2.2
 
   rxdart: ^0.27.7
 
   #Collection
-  collection: 1.17.2
+  collection: 1.18.0
 
   #Google Font
-  google_fonts: ^5.1.0
+  google_fonts: ^6.1.0
 
   pull_to_refresh: ^2.0.0
 
-  google_mobile_ads: ^3.0.0
+  google_mobile_ads: ^3.1.0
+
+  mockito: ^5.4.2
+
+  hive_test: ^1.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_flavorizr: ^2.2.1
-  mocktail: ^0.3.0
-  hive_test: ^1.0.1
+  faker: ^2.1.0
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
-  build_runner: ^2.3.3
-  freezed: ^2.3.4
-  json_serializable: ^6.6.2
+  flutter_lints: ^2.0.3
+  build_runner: ^2.4.6
+  freezed: ^2.4.5
+  json_serializable: ^6.7.1
   hive_generator: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
