@@ -4,15 +4,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class DioExceptions implements Exception {
-  DioExceptions.fromDioError(DioError dioError) {
-    if (dioError.type == DioErrorType.badResponse) {
+  DioExceptions.fromDioError(DioException dioError) {
+    if (dioError.type == DioExceptionType.badResponse) {
       message =
           _handleError(dioError.response!.statusCode, dioError.response!.data);
-    } else if (dioError.type == DioErrorType.connectionTimeout ||
-        dioError.type == DioErrorType.connectionError ||
-        dioError.type == DioErrorType.receiveTimeout) {
+    } else if (dioError.type == DioExceptionType.connectionTimeout ||
+        dioError.type == DioExceptionType.connectionError ||
+        dioError.type == DioExceptionType.receiveTimeout) {
       message = "Receive timeout in connection with API server";
-    } else if (dioError.type == DioErrorType.sendTimeout) {
+    } else if (dioError.type == DioExceptionType.sendTimeout) {
       message = "Send timeout in connection with API server";
     } else if (dioError.error is SocketException) {
       message = "No Internet Connection";
