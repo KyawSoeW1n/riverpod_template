@@ -5,25 +5,46 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverpod_testing/app.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:riverpod_testing/data_model/cache/cache_post.dart';
+import 'package:riverpod_testing/data_source/network/posts/post_remote_datasource_impl.dart';
+import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase_impl.dart';
+import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
+import 'widget_test.mocks.dart';
+
+@GenerateMocks(
+  [
+    PostRemoteDataSourceImpl,
+    FetchPostsUseCaseImpl,
+  ],
+)
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  TestWidgetsFlutterBinding.ensureInitialized();
+  final postsRemoteDataSourceImpl = MockPostRemoteDataSourceImpl();
+  final mockFetchPostsUseCaseImpl = MockFetchPostsUseCaseImpl();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  final faker = Faker();
+  final expected = [
+    CachePost(
+      faker.lorem.random.integer(5),
+      faker.lorem.sentence(),
+      faker.lorem.random.boolean(),
+    )
+  ];
+  test('Get Post API', () async {
+    when(postsRemoteDataSourceImpl.getPostList()).thenAnswer(
+      (_) async => expected,
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    mockFetchPostsUseCaseImpl.fetchPostList();
+    verify(mockFetchPostsUseCaseImpl.fetchPostList());
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final result = await postsRemoteDataSourceImpl.getPostList();
+
+    expect(result, expected);
   });
 }
