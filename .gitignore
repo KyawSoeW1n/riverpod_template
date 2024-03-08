@@ -16,6 +16,9 @@ ios/Flutter/
 # dotenv environment variables file
 .env*
 
+*.g.dart
+*.freezed.dart
+
 riverpod_testing.iml
 
 # Avoid committing generated Javascript files:
