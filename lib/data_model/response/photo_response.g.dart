@@ -6,8 +6,8 @@ part of 'photo_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PhotoResponse _$$_PhotoResponseFromJson(Map<String, dynamic> json) =>
-    _$_PhotoResponse(
+_$PhotoResponseImpl _$$PhotoResponseImplFromJson(Map<String, dynamic> json) =>
+    _$PhotoResponseImpl(
       title: json['title'] as String,
       thumbnailUrl: json['thumbnailUrl'] as String,
       url: json['url'] as String,
@@ -15,7 +15,7 @@ _$_PhotoResponse _$$_PhotoResponseFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
     );
 
-Map<String, dynamic> _$$_PhotoResponseToJson(_$_PhotoResponse instance) =>
+Map<String, dynamic> _$$PhotoResponseImplToJson(_$PhotoResponseImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'thumbnailUrl': instance.thumbnailUrl,

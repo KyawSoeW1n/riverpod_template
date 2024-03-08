@@ -38,7 +38,7 @@ android {
         }
         production {
             dimension "flavor-type"
-            applicationId "roi.riverpod"
+            applicationId "com.riverpod"
             resValue "string", "app_name", "Riverpod"
         }
     }

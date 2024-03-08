@@ -12,7 +12,7 @@ part of 'photo_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PhotoResponse _$PhotoResponseFromJson(Map<String, dynamic> json) {
   return _PhotoResponse.fromJson(json);
@@ -21,17 +21,12 @@ PhotoResponse _$PhotoResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PhotoResponse {
   String get title => throw _privateConstructorUsedError;
-
   String get thumbnailUrl => throw _privateConstructorUsedError;
-
   String get url => throw _privateConstructorUsedError;
-
   int get albumId => throw _privateConstructorUsedError;
-
   int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $PhotoResponseCopyWith<PhotoResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,7 +37,6 @@ abstract class $PhotoResponseCopyWith<$Res> {
   factory $PhotoResponseCopyWith(
           PhotoResponse value, $Res Function(PhotoResponse) then) =
       _$PhotoResponseCopyWithImpl<$Res, PhotoResponse>;
-
   @useResult
   $Res call(
       {String title, String thumbnailUrl, String url, int albumId, int id});
@@ -55,7 +49,6 @@ class _$PhotoResponseCopyWithImpl<$Res, $Val extends PhotoResponse>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -94,12 +87,11 @@ class _$PhotoResponseCopyWithImpl<$Res, $Val extends PhotoResponse>
 }
 
 /// @nodoc
-abstract class _$$_PhotoResponseCopyWith<$Res>
+abstract class _$$PhotoResponseImplCopyWith<$Res>
     implements $PhotoResponseCopyWith<$Res> {
-  factory _$$_PhotoResponseCopyWith(
-          _$_PhotoResponse value, $Res Function(_$_PhotoResponse) then) =
-      __$$_PhotoResponseCopyWithImpl<$Res>;
-
+  factory _$$PhotoResponseImplCopyWith(
+          _$PhotoResponseImpl value, $Res Function(_$PhotoResponseImpl) then) =
+      __$$PhotoResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +99,11 @@ abstract class _$$_PhotoResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PhotoResponseCopyWithImpl<$Res>
-    extends _$PhotoResponseCopyWithImpl<$Res, _$_PhotoResponse>
-    implements _$$_PhotoResponseCopyWith<$Res> {
-  __$$_PhotoResponseCopyWithImpl(
-      _$_PhotoResponse _value, $Res Function(_$_PhotoResponse) _then)
+class __$$PhotoResponseImplCopyWithImpl<$Res>
+    extends _$PhotoResponseCopyWithImpl<$Res, _$PhotoResponseImpl>
+    implements _$$PhotoResponseImplCopyWith<$Res> {
+  __$$PhotoResponseImplCopyWithImpl(
+      _$PhotoResponseImpl _value, $Res Function(_$PhotoResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +115,7 @@ class __$$_PhotoResponseCopyWithImpl<$Res>
     Object? albumId = null,
     Object? id = null,
   }) {
-    return _then(_$_PhotoResponse(
+    return _then(_$PhotoResponseImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -150,16 +142,16 @@ class __$$_PhotoResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PhotoResponse implements _PhotoResponse {
-  const _$_PhotoResponse(
+class _$PhotoResponseImpl implements _PhotoResponse {
+  const _$PhotoResponseImpl(
       {required this.title,
       required this.thumbnailUrl,
       required this.url,
       required this.albumId,
       required this.id});
 
-  factory _$_PhotoResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_PhotoResponseFromJson(json);
+  factory _$PhotoResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PhotoResponseImplFromJson(json);
 
   @override
   final String title;
@@ -178,10 +170,10 @@ class _$_PhotoResponse implements _PhotoResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PhotoResponse &&
+            other is _$PhotoResponseImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.thumbnailUrl, thumbnailUrl) ||
                 other.thumbnailUrl == thumbnailUrl) &&
@@ -198,12 +190,12 @@ class _$_PhotoResponse implements _PhotoResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PhotoResponseCopyWith<_$_PhotoResponse> get copyWith =>
-      __$$_PhotoResponseCopyWithImpl<_$_PhotoResponse>(this, _$identity);
+  _$$PhotoResponseImplCopyWith<_$PhotoResponseImpl> get copyWith =>
+      __$$PhotoResponseImplCopyWithImpl<_$PhotoResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PhotoResponseToJson(
+    return _$$PhotoResponseImplToJson(
       this,
     );
   }
@@ -215,28 +207,23 @@ abstract class _PhotoResponse implements PhotoResponse {
       required final String thumbnailUrl,
       required final String url,
       required final int albumId,
-      required final int id}) = _$_PhotoResponse;
+      required final int id}) = _$PhotoResponseImpl;
 
   factory _PhotoResponse.fromJson(Map<String, dynamic> json) =
-      _$_PhotoResponse.fromJson;
+      _$PhotoResponseImpl.fromJson;
 
   @override
   String get title;
-
   @override
   String get thumbnailUrl;
-
   @override
   String get url;
-
   @override
   int get albumId;
-
   @override
   int get id;
-
   @override
   @JsonKey(ignore: true)
-  _$$_PhotoResponseCopyWith<_$_PhotoResponse> get copyWith =>
+  _$$PhotoResponseImplCopyWith<_$PhotoResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

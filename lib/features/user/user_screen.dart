@@ -9,6 +9,8 @@ import '../../widget/common/common_app_bar.dart';
 import '../../widget/common/common_elevated_button_widget.dart';
 
 class UserScreen extends BaseView {
+  UserScreen({super.key});
+
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
     return const CommonAppBar(

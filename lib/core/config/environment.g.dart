@@ -6,12 +6,12 @@ part of 'environment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Environment _$$_EnvironmentFromJson(Map<String, dynamic> json) =>
-    _$_Environment(
+_$EnvironmentImpl _$$EnvironmentImplFromJson(Map<String, dynamic> json) =>
+    _$EnvironmentImpl(
       baseUrl: json['baseUrl'] as String,
     );
 
-Map<String, dynamic> _$$_EnvironmentToJson(_$_Environment instance) =>
+Map<String, dynamic> _$$EnvironmentImplToJson(_$EnvironmentImpl instance) =>
     <String, dynamic>{
       'baseUrl': instance.baseUrl,
     };
