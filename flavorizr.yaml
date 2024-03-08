@@ -17,7 +17,7 @@ flavors:
       name: "Riverpod"
 
     android:
-      applicationId: "roi.riverpod"
+      applicationId: "com.riverpod"
     ios:
       bundleId: "com.riverpod"
 

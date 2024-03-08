@@ -6,15 +6,17 @@ part of 'post_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostItemResponse _$$_PostItemResponseFromJson(Map<String, dynamic> json) =>
-    _$_PostItemResponse(
+_$PostItemResponseImpl _$$PostItemResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PostItemResponseImpl(
       title: json['title'] as String,
       completed: json['completed'] as bool,
       userId: json['userId'] as int,
       id: json['id'] as int,
     );
 
-Map<String, dynamic> _$$_PostItemResponseToJson(_$_PostItemResponse instance) =>
+Map<String, dynamic> _$$PostItemResponseImplToJson(
+        _$PostItemResponseImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'completed': instance.completed,

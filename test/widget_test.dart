@@ -37,23 +37,28 @@ void main() {
       "userId": faker.lorem.random.integer(5),
       "id": faker.lorem.random.integer(5),
       "title": faker.lorem.sentence(),
-      "body": faker.lorem.sentence(),
+      "completed": faker.lorem.random.boolean()
     }
   ];
 
   test('Get Post API', () async {
     final expectedResult = responseList
-        .map((e) => CachePost(PostItemResponse.fromJson(e).id,
-            PostItemResponse.fromJson(e).title, false))
+        .map(
+          (e) => CachePost(
+            PostItemResponse.fromJson(e).id,
+            PostItemResponse.fromJson(e).title,
+            false,
+          ),
+        )
         .toList();
     when(mockPostMapper.mapFromResponse(responseList)).thenAnswer(
       (_) => expectedResult,
     );
 
-    final expected = mockPostMapper.mapFromResponse(responseList);
+    final expectedResponse = mockPostMapper.mapFromResponse(responseList);
 
     when(postsRemoteDataSourceImpl.getPostList()).thenAnswer(
-      (_) async => expected,
+      (_) async => expectedResponse,
     );
 
     mockFetchPostsUseCaseImpl.fetchPostList();
@@ -61,6 +66,6 @@ void main() {
 
     final actualResult = await postsRemoteDataSourceImpl.getPostList();
 
-    expect(actualResult, expected);
+    expect(actualResult, expectedResponse);
   });
 }
