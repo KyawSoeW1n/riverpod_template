@@ -44,6 +44,11 @@ class PhotoScreen extends BaseView {
             orElse: () {
               return const SizedBox();
             },
+            loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
             error: (e) => ErrorHandlingWidget(
               exception: NotFoundException("Not Found", "NOT FOUND"),
             ),

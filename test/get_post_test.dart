@@ -12,23 +12,23 @@ import 'package:mockito/mockito.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:riverpod_testing/data_model/response/post_response.dart';
 import 'package:riverpod_testing/data_source/network/posts/post_remote_datasource_impl.dart';
-import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase_impl.dart';
+import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase.dart';
 import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
-import 'widget_test.mocks.dart';
+import 'get_post_test.mocks.dart';
 
 @GenerateMocks(
   [
     PostMapper,
-    PostRemoteDataSourceImpl,
-    FetchPostsUseCaseImpl,
+    PostsRemoteDataSourceImpl,
+    FetchPostsUseCase,
   ],
 )
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final mockPostMapper = MockPostMapper();
-  final postsRemoteDataSourceImpl = MockPostRemoteDataSourceImpl();
-  final mockFetchPostsUseCaseImpl = MockFetchPostsUseCaseImpl();
+  final postsRemoteDataSourceImpl = MockPostsRemoteDataSourceImpl();
+  final mockFetchPostsUseCaseImpl = MockFetchPostsUseCase();
 
   final faker = Faker();
 
