@@ -62,6 +62,7 @@ void main() {
     );
 
     mockFetchPostsUseCase.fetchPostList();
+
     verify(mockFetchPostsUseCase.fetchPostList());
     verify(mockPostMapper.mapFromResponse(responseList));
 

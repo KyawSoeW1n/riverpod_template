@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_testing/core/locale/support_locale.dart';
-import 'package:riverpod_testing/domain/get_language/get_language_usecase_impl.dart';
 
 import '../../domain/change_language/change_language_usecase.dart';
-import '../../domain/change_language/change_language_usecase_impl.dart';
 import '../../domain/get_language/get_language_usecase.dart';
 
 class LocaleNotifier extends StateNotifier<Locale> {
