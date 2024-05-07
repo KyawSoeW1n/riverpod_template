@@ -12,7 +12,6 @@ import 'package:mockito/mockito.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:riverpod_testing/data_model/response/post_response.dart';
 import 'package:riverpod_testing/data_source/network/posts/post_remote_datasource.dart';
-import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase.dart';
 import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
 import 'get_post_test.mocks.dart';
@@ -21,14 +20,12 @@ import 'get_post_test.mocks.dart';
   [
     PostMapper,
     PostsRemoteDataSource,
-    FetchPostsUseCase,
   ],
 )
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final mockPostMapper = MockPostMapper();
   final postsRemoteDataSource = MockPostsRemoteDataSource();
-  final mockFetchPostsUseCase = MockFetchPostsUseCase();
 
   final faker = Faker();
 
@@ -61,9 +58,6 @@ void main() {
       (_) async => expectedResponse,
     );
 
-    mockFetchPostsUseCase.fetchPostList();
-
-    verify(mockFetchPostsUseCase.fetchPostList());
     verify(mockPostMapper.mapFromResponse(responseList));
 
     final actualResult = await postsRemoteDataSource.getPostList();

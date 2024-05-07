@@ -27,7 +27,6 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final mockPhotoMapper = MockPhotoMapper();
   final mockPhotoRemoteDataSource = MockPhotoRemoteDataSource();
-  final mockGetPhotoUseCase = MockGetPhotoUseCase();
 
   final faker = Faker();
 
