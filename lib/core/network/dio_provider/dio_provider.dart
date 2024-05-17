@@ -51,7 +51,7 @@ class DioProvider {
   static addPrettyDioLogger() {
     /// Adding pretty dio logger can freeze application
     if (kDebugMode) {
-      _instance!.interceptors.add(_prettyDioLogger);
+      // _instance!.interceptors.add(_prettyDioLogger);
     }
   }
 

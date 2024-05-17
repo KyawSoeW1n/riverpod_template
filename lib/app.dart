@@ -2,13 +2,14 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app_constants/app_route_configuration.dart';
 import 'core/locale/locale_provider.dart';
 import 'core/locale/localization_helper.dart';
 import 'core/resource/theme/theme_config.dart';
-class MyApp extends ConsumerWidget {
+
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   @override
@@ -42,6 +43,5 @@ class MyApp extends ConsumerWidget {
         );
       },
     );
-
   }
 }

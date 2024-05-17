@@ -21,11 +21,15 @@ PostItemResponse _$PostItemResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PostItemResponse {
   String get title => throw _privateConstructorUsedError;
+
   bool get completed => throw _privateConstructorUsedError;
+
   int get userId => throw _privateConstructorUsedError;
+
   int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $PostItemResponseCopyWith<PostItemResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -36,6 +40,7 @@ abstract class $PostItemResponseCopyWith<$Res> {
   factory $PostItemResponseCopyWith(
           PostItemResponse value, $Res Function(PostItemResponse) then) =
       _$PostItemResponseCopyWithImpl<$Res, PostItemResponse>;
+
   @useResult
   $Res call({String title, bool completed, int userId, int id});
 }
@@ -47,6 +52,7 @@ class _$PostItemResponseCopyWithImpl<$Res, $Val extends PostItemResponse>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -85,6 +91,7 @@ abstract class _$$PostItemResponseImplCopyWith<$Res>
   factory _$$PostItemResponseImplCopyWith(_$PostItemResponseImpl value,
           $Res Function(_$PostItemResponseImpl) then) =
       __$$PostItemResponseImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({String title, bool completed, int userId, int id});
@@ -196,12 +203,16 @@ abstract class _PostItemResponse implements PostItemResponse {
 
   @override
   String get title;
+
   @override
   bool get completed;
+
   @override
   int get userId;
+
   @override
   int get id;
+
   @override
   @JsonKey(ignore: true)
   _$$PostItemResponseImplCopyWith<_$PostItemResponseImpl> get copyWith =>

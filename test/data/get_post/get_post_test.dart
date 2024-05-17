@@ -11,24 +11,21 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:riverpod_testing/data_model/response/post_response.dart';
-import 'package:riverpod_testing/data_source/network/posts/post_remote_datasource_impl.dart';
-import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase_impl.dart';
+import 'package:riverpod_testing/data_source/network/posts/post_remote_datasource.dart';
 import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
-import 'widget_test.mocks.dart';
+import 'get_post_test.mocks.dart';
 
 @GenerateMocks(
   [
     PostMapper,
-    PostRemoteDataSourceImpl,
-    FetchPostsUseCaseImpl,
+    PostsRemoteDataSource,
   ],
 )
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final mockPostMapper = MockPostMapper();
-  final postsRemoteDataSourceImpl = MockPostRemoteDataSourceImpl();
-  final mockFetchPostsUseCaseImpl = MockFetchPostsUseCaseImpl();
+  final postsRemoteDataSource = MockPostsRemoteDataSource();
 
   final faker = Faker();
 
@@ -57,14 +54,13 @@ void main() {
 
     final expectedResponse = mockPostMapper.mapFromResponse(responseList);
 
-    when(postsRemoteDataSourceImpl.getPostList()).thenAnswer(
+    when(postsRemoteDataSource.getPostList()).thenAnswer(
       (_) async => expectedResponse,
     );
 
-    mockFetchPostsUseCaseImpl.fetchPostList();
-    verify(mockFetchPostsUseCaseImpl.fetchPostList());
+    verify(mockPostMapper.mapFromResponse(responseList));
 
-    final actualResult = await postsRemoteDataSourceImpl.getPostList();
+    final actualResult = await postsRemoteDataSource.getPostList();
 
     expect(actualResult, expectedResponse);
   });

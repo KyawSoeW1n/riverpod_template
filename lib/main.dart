@@ -11,19 +11,14 @@ import 'data_model/cache/cache_post.dart';
 import 'data_source/local/app_database.dart';
 import 'flavors.dart';
 
-
 FutureOr<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   await FlavourManager().init(Flavor.production);
   await Hive.initFlutter();
   Hive.registerAdapter(CachePostAdapter());
-
   final dbService = DatabaseService();
-  await dbService.initTheme();
-  await dbService.initPostBox();
-  await dbService.initLanguageBox();
-  await dbService.initUserDataBox();
+  await initDatabase(dbService);
   runApp(
     ProviderScope(
       overrides: [
@@ -32,4 +27,11 @@ FutureOr<void> main() async {
       child: const MyApp(),
     ),
   );
+}
+
+Future<void> initDatabase(DatabaseService databaseService) async {
+  await databaseService.initTheme();
+  await databaseService.initPostBox();
+  await databaseService.initLanguageBox();
+  await databaseService.initUserDataBox();
 }

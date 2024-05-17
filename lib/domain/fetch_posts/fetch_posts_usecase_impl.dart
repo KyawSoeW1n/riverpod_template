@@ -12,7 +12,7 @@ final fetchPostUseCaseImpl = Provider.autoDispose<FetchPostsUseCaseImpl>(
 );
 
 class FetchPostsUseCaseImpl extends FetchPostsUseCase {
-  final PostRemoteDataSourceImpl _postRemoteDataSourceImpl;
+  final PostsRemoteDataSourceImpl _postRemoteDataSourceImpl;
   final PostLocalDataSourceImpl _postLocalDataSourceImpl;
 
   FetchPostsUseCaseImpl(

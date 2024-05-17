@@ -25,24 +25,28 @@ class PhotoScreen extends BaseView {
     final refreshController = RefreshController();
     // final refreshController = ref.watch(photoRefreshControllerProvider);
     final scrollController = ref.watch(photoScrollControllerProvider);
-    final photoProvider = ref.watch(photoNotifierProvider);
+    final photoProviderState = ref.watch(photoNotifierProvider);
+    final photoNotifier = ref.read(photoNotifierProvider.notifier);
     return Consumer(
       builder: (context, ref, _) {
         return SmartRefresher(
-          onRefresh: () =>
-              ref.read(photoNotifierProvider.notifier).getPhotoList(
-                    refreshController: refreshController,
-                    forceRefresh: true,
-                  ),
+          onRefresh: () => photoNotifier.getPhotoList(
+            refreshController: refreshController,
+            forceRefresh: true,
+          ),
           enablePullUp: true,
           enablePullDown: true,
-          onLoading: () => ref
-              .read(photoNotifierProvider.notifier)
-              .getPhotoList(refreshController: refreshController),
+          onLoading: () =>
+              photoNotifier.getPhotoList(refreshController: refreshController),
           controller: refreshController,
-          child: photoProvider.maybeWhen(
+          child: photoProviderState.maybeWhen(
             orElse: () {
               return const SizedBox();
+            },
+            loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             },
             error: (e) => ErrorHandlingWidget(
               exception: NotFoundException("Not Found", "NOT FOUND"),

@@ -11,7 +11,7 @@ import 'core/config/flavour_manager.dart';
 import 'data_source/local/app_database.dart';
 import 'flavors.dart';
 
-FutureOr<void> main()  async {
+FutureOr<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   await FlavourManager().init(Flavor.development);

@@ -23,6 +23,7 @@ mixin _$Environment {
   String get baseUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $EnvironmentCopyWith<Environment> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ abstract class $EnvironmentCopyWith<$Res> {
   factory $EnvironmentCopyWith(
           Environment value, $Res Function(Environment) then) =
       _$EnvironmentCopyWithImpl<$Res, Environment>;
+
   @useResult
   $Res call({String baseUrl});
 }
@@ -44,6 +46,7 @@ class _$EnvironmentCopyWithImpl<$Res, $Val extends Environment>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -67,6 +70,7 @@ abstract class _$$EnvironmentImplCopyWith<$Res>
   factory _$$EnvironmentImplCopyWith(
           _$EnvironmentImpl value, $Res Function(_$EnvironmentImpl) then) =
       __$$EnvironmentImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({String baseUrl});
@@ -145,6 +149,7 @@ abstract class _Environment implements Environment {
 
   @override
   String get baseUrl;
+
   @override
   @JsonKey(ignore: true)
   _$$EnvironmentImplCopyWith<_$EnvironmentImpl> get copyWith =>

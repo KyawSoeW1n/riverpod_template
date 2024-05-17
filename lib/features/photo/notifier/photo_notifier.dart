@@ -5,6 +5,7 @@ import 'package:riverpod_testing/core/utils/app_utils.dart';
 import 'package:riverpod_testing/extension/refresh_controller_extension.dart';
 
 import '../../../core/state.dart';
+import '../../../domain/get_photo/get_photo_usecase.dart';
 import '../../../domain/get_photo/get_photo_usecase_impl.dart';
 
 final photoNotifierProvider =
@@ -16,11 +17,11 @@ final photoNotifierProvider =
 });
 
 class PhotoNotifier extends StateNotifier<State<List<String>>> {
-  final GetPhotoUseCaseImpl _getPhotoUseCaseImpl;
+  final GetPhotoUseCase _getPhotoUseCase;
   int pageNo = 1;
 
   PhotoNotifier(
-    this._getPhotoUseCaseImpl,
+    this._getPhotoUseCase,
   ) : super(const State.loading()) {
     getPhotoList();
   }
@@ -32,7 +33,7 @@ class PhotoNotifier extends StateNotifier<State<List<String>>> {
     }
 
     try {
-      final photoList = await _getPhotoUseCaseImpl.getPhotoList(pageNo);
+      final photoList = await _getPhotoUseCase.getPhotoList(pageNo);
       if (photoList != null) {
         pageNo++;
         if (state.data != null) {

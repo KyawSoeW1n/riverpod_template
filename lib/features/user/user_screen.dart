@@ -22,7 +22,6 @@ class UserScreen extends BaseView {
   Widget body(BuildContext context, WidgetRef ref) {
     final userNameTextEditingController = useTextEditingController();
     final userProvider = ref.watch(userNotifierProvider);
-    // final userName =
     return Padding(
       padding: const EdgeInsets.all(
         AppDimens.margin16,
