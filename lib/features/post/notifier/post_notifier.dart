@@ -5,9 +5,9 @@ import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase_impl.dar
 
 import '../../../core/state.dart';
 import '../../../domain/change_post_status/change_post_status_usecase.dart';
+import '../../../domain/change_post_status/change_post_status_usecase_impl.dart';
 import '../../../domain/fetch_posts/fetch_posts_usecase.dart';
 import '../../../domain/model/post_vo.dart';
-import '../../../domain/change_post_status/change_post_status_usecase_impl.dart';
 
 final postNotifierProvider =
     StateNotifierProvider.autoDispose<PostNotifier, State<List<PostVO>>>((ref) {

@@ -7,8 +7,9 @@ import 'package:riverpod_testing/mapper/posts_mapper.dart';
 import '../../../app_constants/app_constants.dart';
 import '../../../core/network/base_remote_datasource.dart';
 
-final postRemoteDataSourceImpl = Provider.autoDispose<PostsRemoteDataSourceImpl>(
-    (ref) => PostsRemoteDataSourceImpl(ref.watch(postMapper)));
+final postRemoteDataSourceImpl =
+    Provider.autoDispose<PostsRemoteDataSourceImpl>(
+        (ref) => PostsRemoteDataSourceImpl(ref.watch(postMapper)));
 
 class PostsRemoteDataSourceImpl extends BaseRemoteSource
     implements PostsRemoteDataSource {
