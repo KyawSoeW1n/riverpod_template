@@ -1,7 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_testing/core/locale/locale_provider.dart';
 import 'package:riverpod_testing/core/locale/support_locale.dart';
 import 'package:riverpod_testing/core/resource/app_dimens.dart';
@@ -12,7 +12,7 @@ import '../../core/locale/localization_helper.dart';
 import '../../core/resource/theme/theme_config.dart';
 import '../../widget/common/common_app_bar.dart';
 
-class SettingScreen extends ConsumerWidget {
+class SettingScreen extends HookConsumerWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
   @override

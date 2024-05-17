@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_testing/widget/common/text_view_widget.dart';
 
 import '../../../core/locale/localization_helper.dart';
@@ -9,7 +10,7 @@ import '../notifier/post_notifier.dart';
 import '../provider/post_scroll_controller_provider.dart';
 import 'error_handling_widget.dart';
 
-class CachePostListWidget extends ConsumerWidget {
+class CachePostListWidget extends HookConsumerWidget {
   const CachePostListWidget({super.key});
 
   @override
