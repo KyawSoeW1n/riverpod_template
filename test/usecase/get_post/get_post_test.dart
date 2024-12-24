@@ -12,7 +12,6 @@ import 'package:mockito/mockito.dart';
 import 'package:riverpod_testing/data_model/cache/cache_post.dart';
 import 'package:riverpod_testing/data_model/response/post_response.dart';
 import 'package:riverpod_testing/domain/fetch_posts/fetch_posts_usecase.dart';
-import 'package:riverpod_testing/mapper/posts_mapper.dart';
 
 import 'get_post_test.mocks.dart';
 

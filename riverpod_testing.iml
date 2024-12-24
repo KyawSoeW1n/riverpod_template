@@ -37,4 +37,7 @@
     <orderEntry type="library" name="Flutter Plugins" level="project" />
     <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="28daa36c-d61a-41ff-b82c-d22b5162f288" />
+  </component>
 </module>

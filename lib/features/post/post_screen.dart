@@ -67,11 +67,9 @@ class PostScreen extends BaseView {
             child: postProvider.maybeWhen(
               loading: () => const LoadingWidget(),
               success: (data) => const CachePostListWidget(),
-              error: (e) => postListStreamProvider.value != null
-                  ? const CachePostListWidget()
-                  : Center(
-                      child: ErrorHandlingWidget(exception: e),
-                    ),
+              error: (e) => Center(
+                child: ErrorHandlingWidget(exception: e),
+              ),
               orElse: () => const SizedBox(),
             ),
           ),

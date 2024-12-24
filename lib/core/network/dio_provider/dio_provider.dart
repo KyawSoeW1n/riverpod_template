@@ -21,8 +21,8 @@ class DioProvider {
 
   static final BaseOptions _options = BaseOptions(
     baseUrl: AppConstants.baseUrl,
-    connectTimeout: const Duration(seconds: 30),
-    receiveTimeout: const Duration(seconds: 30),
+    connectTimeout: const Duration(seconds: 1),
+    receiveTimeout: const Duration(seconds: 1),
     headers: _addHeader(),
   );
 
@@ -51,7 +51,7 @@ class DioProvider {
   static addPrettyDioLogger() {
     /// Adding pretty dio logger can freeze application
     if (kDebugMode) {
-      // _instance!.interceptors.add(_prettyDioLogger);
+      _instance!.interceptors.add(_prettyDioLogger);
     }
   }
 
